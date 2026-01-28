@@ -294,7 +294,7 @@ service {
 
 2. **Nodes not coming up**
    - Check Docker resources (CPU/memory)
-   - Wait 3-5 minutes for SR-SIM to boot fully
+   - Wait 1-2 minutes for SR-SIM to boot fully
    - Use `docker logs <container>` to check boot status
 
 3. **BGP sessions not establishing**
