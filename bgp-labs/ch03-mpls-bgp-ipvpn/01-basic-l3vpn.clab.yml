@@ -1,0 +1,99 @@
+# =============================================================================
+# Lab: MPLS/BGP IP-VPN (Layer 3 VPN)
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 3 - MPLS/BGP IP-VPNs
+# =============================================================================
+# This lab demonstrates:
+# - Basic MPLS/BGP IP-VPN (RFC 4364)
+# - VRF configuration with Route Targets
+# - Route Distinguishers
+# - MP-BGP VPNv4 address family
+# - PE-CE routing (static and EBGP)
+# - Route Target Constraint (RTC)
+# - OSPF as PE-CE protocol with Sham-Links
+# =============================================================================
+#
+# Topology:
+#
+#   CE1 ---- PE1 -------- P1 -------- PE2 ---- CE2
+#   (VPN-A)   |            |            |   (VPN-A)
+#             |            |            |
+#   CE3 ------+            |            +------ CE4
+#   (VPN-B)                |                  (VPN-B)
+#                          |
+#                         PE3 ---- CE5
+#                                (VPN-A)
+#
+# AS 64496 (Service Provider)
+# VPN-A: RT 64496:100 (CE1, CE2, CE5)
+# VPN-B: RT 64496:200 (CE3, CE4)
+# =============================================================================
+
+name: ch03-mpls-bgp-ipvpn
+
+topology:
+  kinds:
+    nokia_sros:
+      image: nokia_srsim:25.7.R1
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+    linux:
+      image: ghcr.io/hellt/network-multitool:latest
+
+  nodes:
+    # Provider Edge Routers
+    PE1:
+      kind: nokia_sros
+      startup-config: configs/PE1.cfg
+      
+    PE2:
+      kind: nokia_sros
+      startup-config: configs/PE2.cfg
+      
+    PE3:
+      kind: nokia_sros
+      startup-config: configs/PE3.cfg
+      
+    # Provider Core Router
+    P1:
+      kind: nokia_sros
+      startup-config: configs/P1.cfg
+      
+    # Customer Edge Routers - VPN-A
+    CE1:
+      kind: nokia_sros
+      startup-config: configs/CE1.cfg
+      
+    CE2:
+      kind: nokia_sros
+      startup-config: configs/CE2.cfg
+      
+    CE5:
+      kind: nokia_sros
+      startup-config: configs/CE5.cfg
+      
+    # Customer Edge Routers - VPN-B
+    CE3:
+      kind: nokia_sros
+      startup-config: configs/CE3.cfg
+      
+    CE4:
+      kind: nokia_sros
+      startup-config: configs/CE4.cfg
+
+  links:
+    # Core links (MPLS backbone)
+    - endpoints: ["PE1:1/1/1", "P1:1/1/1"]
+    - endpoints: ["PE2:1/1/1", "P1:1/1/2"]
+    - endpoints: ["PE3:1/1/1", "P1:1/1/3"]
+    
+    # PE1 to CE links
+    - endpoints: ["PE1:1/1/2", "CE1:1/1/1"]  # VPN-A
+    - endpoints: ["PE1:1/1/3", "CE3:1/1/1"]  # VPN-B
+    
+    # PE2 to CE links
+    - endpoints: ["PE2:1/1/2", "CE2:1/1/1"]  # VPN-A
+    - endpoints: ["PE2:1/1/3", "CE4:1/1/1"]  # VPN-B
+    
+    # PE3 to CE links
+    - endpoints: ["PE3:1/1/2", "CE5:1/1/1"]  # VPN-A

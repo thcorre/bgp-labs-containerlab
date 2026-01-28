@@ -1,0 +1,96 @@
+# =============================================================================
+# Lab: Segment Routing with BGP
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 8 - Segment Routing and BGP
+# =============================================================================
+# This lab demonstrates:
+# - BGP Prefix-SID distribution
+# - SR-MPLS with BGP labeled unicast
+# - SR TE Policies advertised via BGP
+# - SRv6 BGP services
+# - Seamless-BFD for SR Policies
+# =============================================================================
+#
+# Topology:
+#
+#                    AS 64496
+#    +------------------------------------------------+
+#    |                                                |
+#    |   ABR1 ---------- P1 ---------- ABR2          |
+#    |     \              |              /           |
+#    |      \            P2            /             |
+#    |       \          /    \        /              |
+#    |        PE1 -----+      +---- PE2              |
+#    |                                               |
+#    +------------------------------------------------+
+#           |                           |
+#          CE1                         CE2
+#
+# Area 0: P1, P2 (core)
+# Area 1: ABR1, PE1
+# Area 2: ABR2, PE2
+# =============================================================================
+
+name: ch08-segment-routing-bgp
+
+topology:
+  kinds:
+    nokia_sros:
+      image: nokia_srsim:25.7.R1
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+    linux:
+      image: ghcr.io/hellt/network-multitool:latest
+
+  nodes:
+    # Area Border Routers
+    ABR1:
+      kind: nokia_sros
+      startup-config: configs/ABR1.cfg
+      
+    ABR2:
+      kind: nokia_sros
+      startup-config: configs/ABR2.cfg
+      
+    # Core Routers
+    P1:
+      kind: nokia_sros
+      startup-config: configs/P1.cfg
+      
+    P2:
+      kind: nokia_sros
+      startup-config: configs/P2.cfg
+      
+    # Provider Edge Routers
+    PE1:
+      kind: nokia_sros
+      startup-config: configs/PE1.cfg
+      
+    PE2:
+      kind: nokia_sros
+      startup-config: configs/PE2.cfg
+      
+    # Customer Edge
+    CE1:
+      kind: linux
+      
+    CE2:
+      kind: linux
+
+  links:
+    # Core mesh (Area 0)
+    - endpoints: ["ABR1:1/1/1", "P1:1/1/1"]
+    - endpoints: ["ABR2:1/1/1", "P1:1/1/2"]
+    - endpoints: ["P1:1/1/3", "P2:1/1/1"]
+    - endpoints: ["ABR1:1/1/2", "P2:1/1/2"]
+    - endpoints: ["ABR2:1/1/2", "P2:1/1/3"]
+    
+    # Area 1 links
+    - endpoints: ["ABR1:1/1/3", "PE1:1/1/1"]
+    
+    # Area 2 links
+    - endpoints: ["ABR2:1/1/3", "PE2:1/1/1"]
+    
+    # CE connections
+    - endpoints: ["PE1:1/1/2", "CE1:eth1"]
+    - endpoints: ["PE2:1/1/2", "CE2:eth1"]

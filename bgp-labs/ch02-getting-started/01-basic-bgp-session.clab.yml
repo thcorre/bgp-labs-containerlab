@@ -1,0 +1,64 @@
+# =============================================================================
+# Lab: Basic BGP Session Establishment
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 2 - Getting Started
+# =============================================================================
+# This lab demonstrates:
+# - Basic EBGP and IBGP session configuration
+# - Session negotiation and capabilities exchange
+# - BGP Finite State Machine (FSM) states
+# - Multi-Protocol BGP (MP-BGP) for IPv4 unicast
+# =============================================================================
+#
+# Topology:
+#
+#                    AS 64496
+#    +----------------------------------------+
+#    |                                        |
+#    |   +------+          +------+           |
+#    |   |  R1  |----------|  R2  |           |
+#    |   +------+          +------+           |
+#    |       |                 |              |
+#    |       |     IBGP        |              |
+#    |       +--------+--------+              |
+#    |                |                       |
+#    +----------------|------------------------+
+#                     |
+#               +------+------+
+#               |     R3      |  AS 64511 (External Peer)
+#               +-------------+
+#
+# =============================================================================
+
+name: ch02-basic-bgp
+
+topology:
+  kinds:
+    nokia_sros:
+      image: nokia_srsim:25.7.R1
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+
+  nodes:
+    # Core router R1 - AS 64496
+    R1:
+      kind: nokia_sros
+      startup-config: configs/R1.cfg
+      
+    # Core router R2 - AS 64496  
+    R2:
+      kind: nokia_sros
+      startup-config: configs/R2.cfg
+      
+    # External peer R3 - AS 64511
+    R3:
+      kind: nokia_sros
+      startup-config: configs/R3.cfg
+
+  links:
+    # R1 to R2 - Internal link
+    - endpoints: ["R1:1/1/1", "R2:1/1/1"]
+    # R1 to R3 - EBGP link  
+    - endpoints: ["R1:1/1/2", "R3:1/1/1"]
+    # R2 to R3 - EBGP link (backup)
+    - endpoints: ["R2:1/1/2", "R3:1/1/2"]
