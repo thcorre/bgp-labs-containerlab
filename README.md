@@ -325,7 +325,7 @@ show router ldp bindings active
 
 ## References
 
-- [Versatile Routing and Services with BGP - Volume II](https://www.nokia.com)
+- [Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)
 - [Containerlab Documentation](https://containerlab.dev)
 - [Nokia SR OS Documentation](https://documentation.nokia.com/sr/)
 - [Nokia Network Developer Portal](https://network.developer.nokia.com)
