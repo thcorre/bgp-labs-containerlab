@@ -1,0 +1,107 @@
+# =============================================================================
+# Lab: EVPN-VPLS (Ethernet VPN)
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 6 - Ethernet VPN
+# =============================================================================
+# This lab demonstrates:
+# - EVPN Route Types (1-5)
+# - EVPN-VPLS service
+# - MAC Advertisement (Route Type 2)
+# - Inclusive Multicast (Route Type 3)
+# - Ethernet Segment (Route Type 4)
+# - Multi-homing with Active/Active
+# - Proxy-ARP in EVPN
+# =============================================================================
+#
+# Topology:
+#
+#            +------ PE1 ------+
+#           /                   \
+#    CE1 --+                     +-- CE2
+#    (MH)   \                   /
+#            +------ PE2 ------+
+#                    |
+#                    P1 (RR)
+#                    |
+#            +------ PE3 ------+
+#           /                   \
+#    CE3 --+                     +-- CE4
+#    (MH)   \                   /
+#            +------ PE4 ------+
+#
+# Multi-homed CEs with Ethernet Segment
+# ES-1: CE1 connected to PE1 and PE2
+# ES-2: CE3 connected to PE3 and PE4
+# =============================================================================
+
+name: ch06-evpn-vpls
+
+topology:
+  kinds:
+    nokia_sros:
+      image: nokia_srsim:25.7.R1
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+    linux:
+      image: ghcr.io/hellt/network-multitool:latest
+
+  nodes:
+    # Provider Edge Routers
+    PE1:
+      kind: nokia_sros
+      startup-config: configs/PE1.cfg
+      
+    PE2:
+      kind: nokia_sros
+      startup-config: configs/PE2.cfg
+      
+    PE3:
+      kind: nokia_sros
+      startup-config: configs/PE3.cfg
+      
+    PE4:
+      kind: nokia_sros
+      startup-config: configs/PE4.cfg
+      
+    # Route Reflector
+    P1:
+      kind: nokia_sros
+      startup-config: configs/P1.cfg
+      
+    # Customer Equipment (Linux hosts for testing)
+    CE1:
+      kind: linux
+      
+    CE2:
+      kind: linux
+      
+    CE3:
+      kind: linux
+      
+    CE4:
+      kind: linux
+
+  links:
+    # Core mesh
+    - endpoints: ["PE1:1/1/1", "P1:1/1/1"]
+    - endpoints: ["PE2:1/1/1", "P1:1/1/2"]
+    - endpoints: ["PE3:1/1/1", "P1:1/1/3"]
+    - endpoints: ["PE4:1/1/1", "P1:1/1/4"]
+    
+    # Inter-PE links for ESI LAG
+    - endpoints: ["PE1:1/1/4", "PE2:1/1/4"]
+    - endpoints: ["PE3:1/1/4", "PE4:1/1/4"]
+    
+    # Multi-homed CE1 (ES-1)
+    - endpoints: ["CE1:eth1", "PE1:1/1/2"]
+    - endpoints: ["CE1:eth2", "PE2:1/1/2"]
+    
+    # Single-homed CE2
+    - endpoints: ["CE2:eth1", "PE1:1/1/3"]
+    
+    # Multi-homed CE3 (ES-2)
+    - endpoints: ["CE3:eth1", "PE3:1/1/2"]
+    - endpoints: ["CE3:eth2", "PE4:1/1/2"]
+    
+    # Single-homed CE4
+    - endpoints: ["CE4:eth1", "PE3:1/1/3"]

@@ -1,0 +1,58 @@
+# =============================================================================
+# Lab: Route Target Constraint (RTC)
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 3 - MPLS/BGP IP-VPNs (Prefix Dissemination)
+# =============================================================================
+# This lab demonstrates:
+# - Route Target Constraint (RFC 4684)
+# - Automatic Route Filtering
+# - Reduced VPNv4 table size on PEs
+# - RTC advertisement to Route Reflectors
+# =============================================================================
+#
+# Topology:
+#
+#    +--- PE1 (VPN-A, VPN-B) ---+
+#    |                          |
+#    +-------- RR (RTC) --------+
+#    |                          |
+#    +--- PE2 (VPN-A only) -----+
+#    |                          |
+#    +--- PE3 (VPN-B only) -----+
+#
+# PE1: Hosts VPN-A (RT 64496:100) and VPN-B (RT 64496:200)
+# PE2: Hosts VPN-A only - should not receive VPN-B routes
+# PE3: Hosts VPN-B only - should not receive VPN-A routes
+# RR: Distributes routes with RTC filtering
+# =============================================================================
+
+name: ch03-route-target-constraint
+
+topology:
+  kinds:
+    nokia_sros:
+      image: nokia_srsim:25.7.R1
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+
+  nodes:
+    PE1:
+      kind: nokia_sros
+      startup-config: configs/rtc/PE1.cfg
+      
+    PE2:
+      kind: nokia_sros
+      startup-config: configs/rtc/PE2.cfg
+      
+    PE3:
+      kind: nokia_sros
+      startup-config: configs/rtc/PE3.cfg
+      
+    RR:
+      kind: nokia_sros
+      startup-config: configs/rtc/RR.cfg
+
+  links:
+    - endpoints: ["PE1:1/1/1", "RR:1/1/1"]
+    - endpoints: ["PE2:1/1/1", "RR:1/1/2"]
+    - endpoints: ["PE3:1/1/1", "RR:1/1/3"]
