@@ -39,8 +39,8 @@ name: ch07-labeled-unicast
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -49,43 +49,43 @@ topology:
   nodes:
     # AS 64496 - Area 1
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE1.cfg
       
     ABR1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ABR1.cfg
       
     # AS 64496 - Core
     P1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/P1.cfg
       
     P2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/P2.cfg
       
     # AS 64496 - Area 2
     ABR2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ABR2.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE2.cfg
       
     # Inter-AS (AS 64496 side)
     ASBR1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ASBR1.cfg
       
     # AS 64510
     ASBR2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ASBR2.cfg
       
     PE3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE3.cfg
       
     # Customer Edge

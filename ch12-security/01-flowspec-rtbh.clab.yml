@@ -29,8 +29,8 @@ name: ch12-security-flowspec
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -39,27 +39,27 @@ topology:
   nodes:
     # Provider Edge - Internet facing
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE1.cfg
       
     # Provider Core
     P1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/P1.cfg
       
     # Provider Edge - Customer facing
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE2.cfg
       
     # FlowSpec Controller
     FlowSpec-Controller:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/FlowSpec-Controller.cfg
       
     # Internet/Attacker simulation
     Internet:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Internet.cfg
       
     # Customer/Target

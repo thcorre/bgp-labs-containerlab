@@ -27,8 +27,8 @@ name: ch06-evpn-rt5-ipprefix
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -37,28 +37,28 @@ topology:
   nodes:
     # Spine switches
     Spine1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Spine1.cfg
       
     Spine2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Spine2.cfg
       
     # Leaf switches (VTEP/PE)
     Leaf1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Leaf1.cfg
       
     Leaf2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Leaf2.cfg
       
     Leaf3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Leaf3.cfg
       
     Leaf4:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/Leaf4.cfg
       
     # Hosts (different subnets)

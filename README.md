@@ -11,7 +11,7 @@ Each lab is designed to demonstrate specific BGP features and technologies cover
 ### Software Requirements
 - Linux host (Ubuntu 20.04+ recommended)
 - Docker (20.10+)
-- Containerlab (0.50.0+)
+- Containerlab (0.72.0+)
 - Nokia SR-SIM container image (or vr-sros with vrnetlab)
 
 ### Installation
@@ -30,7 +30,7 @@ You'll need to obtain the Nokia SR-SIM image from Nokia. Once obtained:
 
 ```bash
 # Import the image (adjust path as needed)
-docker load -i nokia_srsim-25.7.R1.tar.gz
+docker load -i nokia_srsim-25.10.R1.tar.gz
 
 # Verify
 docker images | grep nokia_srsim

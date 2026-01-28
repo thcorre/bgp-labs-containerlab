@@ -30,8 +30,8 @@ name: ch03-inter-as-option-c
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -40,36 +40,36 @@ topology:
   nodes:
     # AS 64496
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/PE1.cfg
       
     P1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/P1.cfg
       
     RR1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/RR1.cfg
       
     ASBR1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/ASBR1.cfg
       
     # AS 64510
     ASBR2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/ASBR2.cfg
       
     P2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/P2.cfg
       
     RR2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/RR2.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/inter-as/PE2.cfg
       
     # Customer Edge

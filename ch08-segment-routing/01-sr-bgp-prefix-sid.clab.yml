@@ -35,8 +35,8 @@ name: ch08-segment-routing-bgp
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -45,29 +45,29 @@ topology:
   nodes:
     # Area Border Routers
     ABR1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ABR1.cfg
       
     ABR2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/ABR2.cfg
       
     # Core Routers
     P1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/P1.cfg
       
     P2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/P2.cfg
       
     # Provider Edge Routers
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE1.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE2.cfg
       
     # Customer Edge

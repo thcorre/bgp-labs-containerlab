@@ -34,25 +34,25 @@ name: ch02-basic-bgp
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
 
   nodes:
     # Core router R1 - AS 64496
     R1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/R1.cfg
       
     # Core router R2 - AS 64496  
     R2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/R2.cfg
       
     # External peer R3 - AS 64511
     R3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/R3.cfg
 
   links:

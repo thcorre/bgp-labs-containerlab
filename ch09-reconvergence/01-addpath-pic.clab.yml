@@ -30,50 +30,50 @@ name: ch09-reconvergence
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
 
   nodes:
     # Provider Edge Routers
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE1.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE2.cfg
       
     PE3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE3.cfg
       
     PE4:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE4.cfg
       
     # Route Reflector
     RR:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/RR.cfg
       
     # External peers (AS 64510)
     External1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/External1.cfg
       
     External3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/External3.cfg
       
     # External peers (AS 64520)
     External2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/External2.cfg
       
     External4:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/External4.cfg
 
   links:

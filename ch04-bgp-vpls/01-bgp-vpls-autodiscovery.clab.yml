@@ -33,8 +33,8 @@ name: ch04-bgp-vpls
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -42,23 +42,23 @@ topology:
 
   nodes:
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE1.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE2.cfg
       
     PE3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE3.cfg
       
     PE4:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/PE4.cfg
       
     RR:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/RR.cfg
       
     CE1:

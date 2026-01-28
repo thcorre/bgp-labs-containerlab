@@ -30,26 +30,26 @@ name: ch03-route-target-constraint
 
 topology:
   kinds:
-    nokia_sros:
-      image: nokia_srsim:25.7.R1
+    nokia_srsim:
+      image: nokia_srsim:25.10.R1
       type: sr-1
       license: /opt/nokia/sros/license.txt
 
   nodes:
     PE1:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/rtc/PE1.cfg
       
     PE2:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/rtc/PE2.cfg
       
     PE3:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/rtc/PE3.cfg
       
     RR:
-      kind: nokia_sros
+      kind: nokia_srsim
       startup-config: configs/rtc/RR.cfg
 
   links:
