@@ -48,40 +48,43 @@ Place your SR-OS license file at `/opt/nokia/sros/license.txt` or update the top
 bgp-labs/
 ├── README.md                          # This file
 ├── ch02-getting-started/              # Chapter 2: Getting Started
-│   ├── 01-basic-bgp-session.clab.yml
+│   ├── basic-bgp-session.clab.yml
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/               # Chapter 3: MPLS/BGP IP-VPNs
 │   ├── 01-basic-l3vpn.clab.yml
+│   ├── 02-inter-as-option-c.clab.yml
+│   ├── 03-route-target-constraint.clab.yml
 │   └── configs/
 ├── ch04-bgp-vpls/                     # Chapter 4: Using BGP in VPLS
-│   ├── 01-bgp-vpls-autodiscovery.clab.yml
+│   ├── bgp-vpls-autodiscovery.clab.yml
 │   └── configs/
 ├── ch05-bgp-vpws/                     # Chapter 5: BGP Signalling for VPWS
-│   ├── 01-bgp-vpws.clab.yml
+│   ├── bgp-vpws.clab.yml
 │   └── configs/
 ├── ch06-evpn/                         # Chapter 6: Ethernet VPN
 │   ├── 01-evpn-vpls.clab.yml
+│   ├── 02-evpn-rt5-ipprefix.clab.yml
 │   └── configs/
 ├── ch07-labeled-unicast/              # Chapter 7: Labeled Unicast IPv4
-│   ├── 01-seamless-mpls-inter-as.clab.yml
+│   ├── seamless-mpls-inter-as.clab.yml
 │   └── configs/
 ├── ch08-segment-routing/              # Chapter 8: Segment Routing and BGP
-│   ├── 01-sr-bgp-prefix-sid.clab.yml
+│   ├── sr-bgp-prefix-sid.clab.yml
 │   └── configs/
 ├── ch09-reconvergence/                # Chapter 9: Reconvergence
-│   ├── 01-addpath-pic.clab.yml
+│   ├── addpath-pic.clab.yml
 │   └── configs/
 ├── ch10-multicast/                    # Chapter 10: Multicast
-│   ├── 01-mvpn.clab.yml
+│   ├── mvpn.clab.yml
 │   └── configs/
 ├── ch11-graceful-restart/             # Chapter 11: Graceful Restart
-│   ├── 01-graceful-restart.clab.yml
+│   ├── graceful-restart.clab.yml
 │   └── configs/
 ├── ch12-security/                     # Chapter 12: Security
-│   ├── 01-flowspec-rtbh.clab.yml
+│   ├── flowspec-rtbh.clab.yml
 │   └── configs/
 └── ch13-general-topics/               # Chapter 13: General Topics
-    ├── 01-multipath-bgpls-orr.clab.yml
+    ├── multipath-bgpls-orr.clab.yml
     └── configs/
 ```
 
@@ -90,56 +93,73 @@ bgp-labs/
 ## Chapter Labs Overview
 
 ### Chapter 2: Getting Started
-**Lab: 01-basic-bgp-session**
+**Lab: basic-bgp-session**
 - Basic EBGP and IBGP session configuration
 - Session negotiation and capabilities
 - BGP Finite State Machine (FSM)
 - Multi-Protocol BGP (MP-BGP)
 
 ### Chapter 3: MPLS/BGP IP-VPNs
-**Lab: 01-basic-l3vpn**
+**Lab 1: 01-basic-l3vpn**
 - MPLS/BGP IP-VPN (RFC 4364)
 - VRF with Route Targets and Route Distinguishers
 - VPNv4 address family
 - PE-CE routing (static and BGP)
-- Route Reflector configuration
+
+**Lab 2: 02-inter-as-option-c**
+- Inter-AS Option C (RFC 4364 Section 10c)
+- EBGP labeled unicast between ASBRs
+- VPNv4 route exchange via Inter-AS Route Reflectors
+- Multi-hop EBGP for VPNv4
+
+**Lab 3: 03-route-target-constraint**
+- Route Target Constraint (RFC 4684)
+- Automatic Route Filtering
+- Reduced VPNv4 table size on PEs
+- RTC advertisement to Route Reflectors
 
 ### Chapter 4: Using BGP in VPLS
-**Lab: 01-bgp-vpls-autodiscovery**
+**Lab: bgp-vpls-autodiscovery**
 - BGP Auto-Discovery with LDP Signalling
 - BGP Auto-Discovery and Signalling (RFC 4761)
 - VPLS Multi-Homing
 
 ### Chapter 5: BGP Signalling for VPWS
-**Lab: 01-bgp-vpws**
+**Lab: bgp-vpws**
 - Single-homed VPWS with BGP signalling
 - Multi-homed VPWS (Active/Standby)
 - Pseudowire redundancy
 
 ### Chapter 6: Ethernet VPN
-**Lab: 01-evpn-vpls**
+**Lab 1: 01-evpn-vpls**
 - EVPN Route Types (1-5)
 - EVPN-VPLS service
 - Ethernet Segments for multi-homing
 - Active/Active multi-homing
 - MAC Advertisement and BUM handling
 
+**Lab 2: 02-evpn-rt5-ipprefix**
+- EVPN Route-Type 5 (IP Prefix Advertisement)
+- Interface-ful with SBD IRB model
+- Interface-less IP-VRF-to-IP-VRF model
+- EVPN-VXLAN overlay in Data Center fabric
+
 ### Chapter 7: Labeled Unicast IPv4
-**Lab: 01-seamless-mpls-inter-as**
+**Lab: seamless-mpls-inter-as**
 - Seamless MPLS with BGP labeled unicast
 - Multi-area MPLS transport
 - Inter-AS Option C
 - BGP-LDP FEC stitching
 
 ### Chapter 8: Segment Routing and BGP
-**Lab: 01-sr-bgp-prefix-sid**
+**Lab: sr-bgp-prefix-sid**
 - BGP Prefix-SID distribution
 - SR-MPLS with BGP labeled unicast
 - IS-IS Segment Routing integration
 - SR transport for VPN services
 
 ### Chapter 9: Reconvergence
-**Lab: 01-addpath-pic**
+**Lab: addpath-pic**
 - ADD-PATH (multiple path advertisement)
 - Prefix Independent Convergence (PIC)
 - Best External
@@ -147,27 +167,27 @@ bgp-labs/
 - Minimum Route Advertisement Interval (MRAI)
 
 ### Chapter 10: Multicast
-**Lab: 01-mvpn**
+**Lab: mvpn**
 - Multicast VPN (MVPN) with BGP signalling
 - MVPN Route Types
 - P-tunnels (mLDP)
 
 ### Chapter 11: Graceful Restart and Error Handling
-**Lab: 01-graceful-restart**
+**Lab: graceful-restart**
 - BGP Graceful Restart mechanism
 - GR Helper mode
 - Long-Lived Graceful Restart (LLGR)
 - Error handling
 
 ### Chapter 12: Security
-**Lab: 01-flowspec-rtbh**
+**Lab: flowspec-rtbh**
 - FlowSpec for DDoS mitigation
 - Remote Triggered Black-Holing (RTBH)
 - Generalized TTL Security Mechanism (GTSM)
 - TCP-AO authentication
 
 ### Chapter 13: General Topics
-**Lab: 01-multipath-bgpls-orr**
+**Lab: multipath-bgpls-orr**
 - IBGP/EBGP Multipath (ECMP)
 - BGP-LS (Link State Distribution)
 - Optimal Route Reflection (ORR)
@@ -184,10 +204,10 @@ bgp-labs/
 cd bgp-labs/ch03-mpls-bgp-ipvpn
 
 # Deploy the lab
-sudo containerlab deploy -t 01-basic-l3vpn.clab.yml
+sudo containerlab deploy -t basic-l3vpn.clab.yml
 
 # View deployed nodes
-sudo containerlab inspect -t 01-basic-l3vpn.clab.yml
+sudo containerlab inspect -t basic-l3vpn.clab.yml
 ```
 
 ### Connecting to Nodes
@@ -228,7 +248,7 @@ show router mpls-labels summary
 ### Destroying a Lab
 
 ```bash
-sudo containerlab destroy -t 01-basic-l3vpn.clab.yml
+sudo containerlab destroy -t basic-l3vpn.clab.yml
 ```
 
 ---

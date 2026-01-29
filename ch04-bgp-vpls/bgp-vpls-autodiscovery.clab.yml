@@ -1,34 +1,40 @@
 # =============================================================================
-# Lab: BGP Signalling for VPWS
+# Lab: BGP VPLS
 # Book: Versatile Routing and Services with BGP - Volume II
-# Chapter: 5 - BGP Signalling for VPWS
+# Chapter: 4 - Using BGP in VPLS
 # =============================================================================
 # This lab demonstrates:
-# - Single-homed VPWS with BGP signalling
-# - Multi-homed VPWS (Active/Standby)
-# - Pseudowire redundancy
+# - BGP Auto-Discovery with LDP Signalling
+# - BGP Auto-Discovery and Signalling (RFC 4761)
+# - VPLS Multi-Homing with BGP
 # =============================================================================
 #
 # Topology:
 #
-#    CE1 ==== PE1 --------------- PE2 ==== CE2
-#              \                 /
-#               \               /
-#                \-- RR ------/
-#               /               \
-#              /                 \
-#    CE3 ==== PE3 --------------- PE4 ==== CE4
+#              +---- PE1 ----+
+#             /               \
+#    CE1 ----+     VPLS-100    +---- CE2
+#             \               /
+#              +---- PE2 ----+
+#                    |
+#                   RR
+#                    |
+#              +---- PE3 ----+
+#             /               \
+#    CE3 ----+                 +---- CE4
+#             \               /
+#              +---- PE4 ----+
 #
-# VPWS-1: CE1 <-> CE2 (single-homed)
-# VPWS-2: CE3 <-> CE4 (multi-homed active/standby)
+# BGP VPLS with Route Target: 64496:100
+# Multi-homed CEs for redundancy
 # =============================================================================
 
-name: ch05-bgp-vpws
+name: ch04-bgp-vpls
 
 topology:
   kinds:
     nokia_srsim:
-      image: nokia_srsim:25.10.R1
+      image: nokia_srsim:25.10.R2
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
@@ -73,14 +79,17 @@ topology:
     - endpoints: ["PE2:1/1/1", "RR:1/1/2"]
     - endpoints: ["PE3:1/1/1", "RR:1/1/3"]
     - endpoints: ["PE4:1/1/1", "RR:1/1/4"]
-    - endpoints: ["PE1:1/1/3", "PE2:1/1/3"]
-    - endpoints: ["PE3:1/1/3", "PE4:1/1/3"]
     
-    # VPWS-1: Single-homed
+    # Multi-homed CE1
     - endpoints: ["CE1:eth1", "PE1:1/1/2"]
-    - endpoints: ["CE2:eth1", "PE2:1/1/2"]
+    - endpoints: ["CE1:eth2", "PE2:1/1/2"]
     
-    # VPWS-2: Multi-homed (CE3 dual-homed)
+    # Single-homed CE2
+    - endpoints: ["CE2:eth1", "PE1:1/1/3"]
+    
+    # Multi-homed CE3
     - endpoints: ["CE3:eth1", "PE3:1/1/2"]
-    - endpoints: ["CE3:eth2", "PE1:1/1/4"]
-    - endpoints: ["CE4:eth1", "PE4:1/1/2"]
+    - endpoints: ["CE3:eth2", "PE4:1/1/2"]
+    
+    # Single-homed CE4
+    - endpoints: ["CE4:eth1", "PE3:1/1/3"]

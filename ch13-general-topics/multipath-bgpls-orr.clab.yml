@@ -35,7 +35,7 @@ name: ch13-general-topics
 topology:
   kinds:
     nokia_srsim:
-      image: nokia_srsim:25.10.R1
+      image: nokia_srsim:25.10.R2
       type: sr-1
       license: /opt/nokia/sros/license.txt
     linux:
