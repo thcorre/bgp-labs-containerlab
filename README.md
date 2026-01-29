@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains containerlab topology files and Nokia SR-OS configurations for hands-on labs based on **"Versatile Routing and Services with BGP - Volume II"** by Colin Bookham.
+This repository contains containerlab topology files and Nokia SR-OS configurations for hands-on labs based on **"[Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)"** by Colin Bookham.
 
 Each lab is designed to demonstrate specific BGP features and technologies covered in the book, allowing readers to gain practical experience with the concepts.
 
@@ -30,7 +30,7 @@ You'll need to obtain the Nokia SR-SIM image from Nokia. Once obtained:
 
 ```bash
 # Import the image (adjust path as needed)
-docker load -i nokia_srsim-25.10.R1.tar.gz
+docker load -i nokia_srsim-25.10.R2.tar.gz
 
 # Verify
 docker images | grep nokia_srsim
@@ -256,7 +256,7 @@ sudo containerlab destroy -t basic-l3vpn.clab.yml
 ## Configuration Notes
 
 ### SR-OS MD-CLI Format
-All configurations use the SR-OS MD-CLI (Model-Driven CLI) format introduced in SR-OS 19.x. Key characteristics:
+All configurations use the SR-OS MD-CLI (Model-Driven CLI) format introduced in SR-OS 16.x. Key characteristics:
 - Hierarchical structure using curly braces `{}`
 - Configuration is applied atomically via `commit`
 - Uses YANG-based data models
@@ -265,7 +265,7 @@ All configurations use the SR-OS MD-CLI (Model-Driven CLI) format introduced in 
 
 **BGP Neighbor Configuration:**
 ```
-router "Base" {
+configure router "Base" {
     bgp {
         admin-state enable
         group "IBGP" {
@@ -285,17 +285,28 @@ router "Base" {
 
 **VPRN (L3VPN) Configuration:**
 ```
-service {
+configure service {
     vprn "VPN-A" {
         admin-state enable
         service-id 100
         customer "1"
-        route-distinguisher "64496:100"
-        vrf-target {
-            community "target:64496:100"
+        bgp-ipvpn {
+            mpls {
+                admin-state enable
+                route-distinguisher "64496:100"
+                vrf-target {
+                    community "target:64496:100"
+                }
+            }
         }
         interface "to-CE" {
-            sap 1/1/2 {
+            ipv4 {
+                primary {
+                    address 192.0.2.1
+                    prefix-length 30
+                }
+            }
+            sap 1/1/c2/1 {
             }
         }
     }
