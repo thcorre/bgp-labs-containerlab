@@ -83,17 +83,17 @@ topology:
 
   links:
     # Core links (MPLS backbone)
-    - endpoints: ["PE1:1/1/1", "P1:1/1/1"]
-    - endpoints: ["PE2:1/1/1", "P1:1/1/2"]
-    - endpoints: ["PE3:1/1/1", "P1:1/1/3"]
+    - endpoints: ["PE1:1/1/c1/1", "P1:1/1/c1/1"]
+    - endpoints: ["PE2:1/1/c1/1", "P1:1/1/c2/1"]
+    - endpoints: ["PE3:1/1/c1/1", "P1:1/1/c3/1"]
     
     # PE1 to CE links
-    - endpoints: ["PE1:1/1/2", "CE1:1/1/1"]  # VPN-A
-    - endpoints: ["PE1:1/1/3", "CE3:1/1/1"]  # VPN-B
+    - endpoints: ["PE1:1/1/c2/1", "CE1:1/1/c1/1"]  # VPN-A
+    - endpoints: ["PE1:1/1/c3/1", "CE3:1/1/c1/1"]  # VPN-B
     
     # PE2 to CE links
-    - endpoints: ["PE2:1/1/2", "CE2:1/1/1"]  # VPN-A
-    - endpoints: ["PE2:1/1/3", "CE4:1/1/1"]  # VPN-B
+    - endpoints: ["PE2:1/1/c2/1", "CE2:1/1/c1/1"]  # VPN-A
+    - endpoints: ["PE2:1/1/c3/1", "CE4:1/1/c1/1"]  # VPN-B
     
     # PE3 to CE links
-    - endpoints: ["PE3:1/1/2", "CE5:1/1/1"]  # VPN-A
+    - endpoints: ["PE3:1/1/c2/1", "CE5:1/1/c1/1"]  # VPN-A
