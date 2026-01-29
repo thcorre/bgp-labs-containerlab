@@ -11,13 +11,13 @@
 #
 # Topology:
 #
-#    CE1 ==== PE1 --------------- PE2 ==== CE2
+#    CE1 ==== R1 --------------- R2 ==== CE2
 #              \                 /
 #               \               /
-#                \-- RR ------/
+#                \-- RR1 ------/
 #               /               \
 #              /                 \
-#    CE3 ==== PE3 --------------- PE4 ==== CE4
+#    CE3 ==== R3 --------------- R4 ==== CE4
 #
 # VPWS-1: CE1 <-> CE2 (single-homed)
 # VPWS-2: CE3 <-> CE4 (multi-homed active/standby)
@@ -35,25 +35,25 @@ topology:
       image: ghcr.io/hellt/network-multitool:latest
 
   nodes:
-    PE1:
+    R1:
       kind: nokia_srsim
-      startup-config: configs/PE1.partial.cfg
+      startup-config: configs/R1.partial.cfg
       
-    PE2:
+    R2:
       kind: nokia_srsim
-      startup-config: configs/PE2.partial.cfg
+      startup-config: configs/R2.partial.cfg
       
-    PE3:
+    R3:
       kind: nokia_srsim
-      startup-config: configs/PE3.partial.cfg
+      startup-config: configs/R3.partial.cfg
       
-    PE4:
+    R4:
       kind: nokia_srsim
-      startup-config: configs/PE4.partial.cfg
+      startup-config: configs/R4.partial.cfg
       
-    RR:
+    RR1:
       kind: nokia_srsim
-      startup-config: configs/RR.partial.cfg
+      startup-config: configs/RR1.partial.cfg
       
     CE1:
       kind: linux
@@ -69,18 +69,18 @@ topology:
 
   links:
     # Core mesh
-    - endpoints: ["PE1:1/1/1", "RR:1/1/1"]
-    - endpoints: ["PE2:1/1/1", "RR:1/1/2"]
-    - endpoints: ["PE3:1/1/1", "RR:1/1/3"]
-    - endpoints: ["PE4:1/1/1", "RR:1/1/4"]
-    - endpoints: ["PE1:1/1/3", "PE2:1/1/3"]
-    - endpoints: ["PE3:1/1/3", "PE4:1/1/3"]
+    - endpoints: ["R1:1/1/1", "RR1:1/1/1"]
+    - endpoints: ["R2:1/1/1", "RR1:1/1/2"]
+    - endpoints: ["R3:1/1/1", "RR1:1/1/3"]
+    - endpoints: ["R4:1/1/1", "RR1:1/1/4"]
+    - endpoints: ["R1:1/1/3", "R2:1/1/3"]
+    - endpoints: ["R3:1/1/3", "R4:1/1/3"]
     
     # VPWS-1: Single-homed
-    - endpoints: ["CE1:eth1", "PE1:1/1/2"]
-    - endpoints: ["CE2:eth1", "PE2:1/1/2"]
+    - endpoints: ["CE1:eth1", "R1:1/1/2"]
+    - endpoints: ["CE2:eth1", "R2:1/1/2"]
     
     # VPWS-2: Multi-homed (CE3 dual-homed)
-    - endpoints: ["CE3:eth1", "PE3:1/1/2"]
-    - endpoints: ["CE3:eth2", "PE1:1/1/4"]
-    - endpoints: ["CE4:eth1", "PE4:1/1/2"]
+    - endpoints: ["CE3:eth1", "R3:1/1/2"]
+    - endpoints: ["CE3:eth2", "R1:1/1/4"]
+    - endpoints: ["CE4:eth1", "R4:1/1/2"]
