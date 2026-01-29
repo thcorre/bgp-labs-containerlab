@@ -314,7 +314,7 @@ service {
 
 2. **Nodes not coming up**
    - Check Docker resources (CPU/memory)
-   - Wait 3-5 minutes for SR-SIM to boot fully
+   - Wait 1-2 minutes for SR-SIM to boot fully
    - Use `docker logs <container>` to check boot status
 
 3. **BGP sessions not establishing**
@@ -345,7 +345,7 @@ show router ldp bindings active
 
 ## References
 
-- [Versatile Routing and Services with BGP - Volume II](https://www.nokia.com)
+- [Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)
 - [Containerlab Documentation](https://containerlab.dev)
 - [Nokia SR OS Documentation](https://documentation.nokia.com/sr/)
 - [Nokia Network Developer Portal](https://network.developer.nokia.com)
