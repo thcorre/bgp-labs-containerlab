@@ -265,7 +265,7 @@ All configurations use the SR-OS MD-CLI (Model-Driven CLI) format introduced in 
 
 **BGP Neighbor Configuration:**
 ```
-router "Base" {
+configure router "Base" {
     bgp {
         admin-state enable
         group "IBGP" {
@@ -285,16 +285,27 @@ router "Base" {
 
 **VPRN (L3VPN) Configuration:**
 ```
-service {
+configure service {
     vprn "VPN-A" {
         admin-state enable
         service-id 100
         customer "1"
-        route-distinguisher "64496:100"
-        vrf-target {
-            community "target:64496:100"
+        bgp-ipvpn {
+            mpls {
+                admin-state enable
+                route-distinguisher "64496:100"
+                vrf-target {
+                    community "target:64496:100"
+                }
+            }
         }
         interface "to-CE" {
+            ipv4 {
+                primary {
+                    address 192.0.2.1
+                    prefix-length 30
+                }
+            }
             sap 1/1/c2/1 {
             }
         }
