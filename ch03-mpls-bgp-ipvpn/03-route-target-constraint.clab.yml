@@ -38,19 +38,19 @@ topology:
   nodes:
     PE1:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE1.cfg
+      startup-config: configs/rtc/PE1.partial.cfg
       
     PE2:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE2.cfg
+      startup-config: configs/rtc/PE2.partial.cfg
       
     PE3:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE3.cfg
+      startup-config: configs/rtc/PE3.partial.cfg
       
     RR:
       kind: nokia_srsim
-      startup-config: configs/rtc/RR.cfg
+      startup-config: configs/rtc/RR.partial.cfg
 
   links:
     - endpoints: ["PE1:1/1/1", "RR:1/1/1"]

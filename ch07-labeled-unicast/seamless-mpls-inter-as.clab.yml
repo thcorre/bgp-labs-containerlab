@@ -50,43 +50,43 @@ topology:
     # AS 64496 - Area 1
     PE1:
       kind: nokia_srsim
-      startup-config: configs/PE1.cfg
+      startup-config: configs/PE1.partial.cfg
       
     ABR1:
       kind: nokia_srsim
-      startup-config: configs/ABR1.cfg
+      startup-config: configs/ABR1.partial.cfg
       
     # AS 64496 - Core
     P1:
       kind: nokia_srsim
-      startup-config: configs/P1.cfg
+      startup-config: configs/P1.partial.cfg
       
     P2:
       kind: nokia_srsim
-      startup-config: configs/P2.cfg
+      startup-config: configs/P2.partial.cfg
       
     # AS 64496 - Area 2
     ABR2:
       kind: nokia_srsim
-      startup-config: configs/ABR2.cfg
+      startup-config: configs/ABR2.partial.cfg
       
     PE2:
       kind: nokia_srsim
-      startup-config: configs/PE2.cfg
+      startup-config: configs/PE2.partial.cfg
       
     # Inter-AS (AS 64496 side)
     ASBR1:
       kind: nokia_srsim
-      startup-config: configs/ASBR1.cfg
+      startup-config: configs/ASBR1.partial.cfg
       
     # AS 64510
     ASBR2:
       kind: nokia_srsim
-      startup-config: configs/ASBR2.cfg
+      startup-config: configs/ASBR2.partial.cfg
       
     PE3:
       kind: nokia_srsim
-      startup-config: configs/PE3.cfg
+      startup-config: configs/PE3.partial.cfg
       
     # Customer Edge
     CE1:

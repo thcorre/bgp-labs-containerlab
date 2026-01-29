@@ -43,17 +43,17 @@ topology:
     # Core router R1 - AS 64496
     R1:
       kind: nokia_srsim
-      startup-config: configs/R1.cfg
+      startup-config: configs/R1.partial.cfg
       
     # Core router R2 - AS 64496  
     R2:
       kind: nokia_srsim
-      startup-config: configs/R2.cfg
+      startup-config: configs/R2.partial.cfg
       
     # External peer R3 - AS 64511
     R3:
       kind: nokia_srsim
-      startup-config: configs/R3.cfg
+      startup-config: configs/R3.partial.cfg
 
   links:
     # R1 to R2 - Internal link

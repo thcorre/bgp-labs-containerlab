@@ -38,28 +38,28 @@ topology:
     # Spine switches
     Spine1:
       kind: nokia_srsim
-      startup-config: configs/Spine1.cfg
+      startup-config: configs/Spine1.partial.cfg
       
     Spine2:
       kind: nokia_srsim
-      startup-config: configs/Spine2.cfg
+      startup-config: configs/Spine2.partial.cfg
       
     # Leaf switches (VTEP/PE)
     Leaf1:
       kind: nokia_srsim
-      startup-config: configs/Leaf1.cfg
+      startup-config: configs/Leaf1.partial.cfg
       
     Leaf2:
       kind: nokia_srsim
-      startup-config: configs/Leaf2.cfg
+      startup-config: configs/Leaf2.partial.cfg
       
     Leaf3:
       kind: nokia_srsim
-      startup-config: configs/Leaf3.cfg
+      startup-config: configs/Leaf3.partial.cfg
       
     Leaf4:
       kind: nokia_srsim
-      startup-config: configs/Leaf4.cfg
+      startup-config: configs/Leaf4.partial.cfg
       
     # Hosts (different subnets)
     Host1:

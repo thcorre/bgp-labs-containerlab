@@ -45,24 +45,24 @@ topology:
     # Provider Edge Routers
     PE1:
       kind: nokia_srsim
-      startup-config: configs/PE1.cfg
+      startup-config: configs/PE1.partial.cfg
       
     PE2:
       kind: nokia_srsim
-      startup-config: configs/PE2.cfg
+      startup-config: configs/PE2.partial.cfg
       
     PE3:
       kind: nokia_srsim
-      startup-config: configs/PE3.cfg
+      startup-config: configs/PE3.partial.cfg
       
     PE4:
       kind: nokia_srsim
-      startup-config: configs/PE4.cfg
+      startup-config: configs/PE4.partial.cfg
       
     # Route Reflector with ORR
     RR:
       kind: nokia_srsim
-      startup-config: configs/RR.cfg
+      startup-config: configs/RR.partial.cfg
       
     # SDN Controller (BGP-LS consumer)
     SDN-Controller:
@@ -75,11 +75,11 @@ topology:
     # Customer Edge
     CE1:
       kind: nokia_srsim
-      startup-config: configs/CE1.cfg
+      startup-config: configs/CE1.partial.cfg
       
     CE2:
       kind: nokia_srsim
-      startup-config: configs/CE2.cfg
+      startup-config: configs/CE2.partial.cfg
 
   links:
     # Core mesh - multiple paths for ECMP

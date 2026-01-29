@@ -44,42 +44,42 @@ topology:
     # Provider Edge Routers
     PE1:
       kind: nokia_srsim
-      startup-config: configs/PE1.cfg
+      startup-config: configs/PE1.partial.cfg
       
     PE2:
       kind: nokia_srsim
-      startup-config: configs/PE2.cfg
+      startup-config: configs/PE2.partial.cfg
       
     PE3:
       kind: nokia_srsim
-      startup-config: configs/PE3.cfg
+      startup-config: configs/PE3.partial.cfg
       
     # Provider Core Router
     P1:
       kind: nokia_srsim
-      startup-config: configs/P1.cfg
+      startup-config: configs/P1.partial.cfg
       
     # Customer Edge Routers - VPN-A
     CE1:
       kind: nokia_srsim
-      startup-config: configs/CE1.cfg
+      startup-config: configs/CE1.partial.cfg
       
     CE2:
       kind: nokia_srsim
-      startup-config: configs/CE2.cfg
+      startup-config: configs/CE2.partial.cfg
       
     CE5:
       kind: nokia_srsim
-      startup-config: configs/CE5.cfg
+      startup-config: configs/CE5.partial.cfg
       
     # Customer Edge Routers - VPN-B
     CE3:
       kind: nokia_srsim
-      startup-config: configs/CE3.cfg
+      startup-config: configs/CE3.partial.cfg
       
     CE4:
       kind: nokia_srsim
-      startup-config: configs/CE4.cfg
+      startup-config: configs/CE4.partial.cfg
 
   links:
     # Core links (MPLS backbone)

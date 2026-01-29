@@ -40,27 +40,27 @@ topology:
     # Provider Edge - Internet facing
     PE1:
       kind: nokia_srsim
-      startup-config: configs/PE1.cfg
+      startup-config: configs/PE1.partial.cfg
       
     # Provider Core
     P1:
       kind: nokia_srsim
-      startup-config: configs/P1.cfg
+      startup-config: configs/P1.partial.cfg
       
     # Provider Edge - Customer facing
     PE2:
       kind: nokia_srsim
-      startup-config: configs/PE2.cfg
+      startup-config: configs/PE2.partial.cfg
       
     # FlowSpec Controller
     FlowSpec-Controller:
       kind: nokia_srsim
-      startup-config: configs/FlowSpec-Controller.cfg
+      startup-config: configs/FlowSpec-Controller.partial.cfg
       
     # Internet/Attacker simulation
     Internet:
       kind: nokia_srsim
-      startup-config: configs/Internet.cfg
+      startup-config: configs/Internet.partial.cfg
       
     # Customer/Target
     Customer:
