@@ -46,44 +46,44 @@ Place your SR-OS license file at `/opt/nokia/sros/license.txt` or update the top
 
 ```
 bgp-labs/
-├── README.md                          # This file
-├── ch02-getting-started/              # Chapter 2: Getting Started
+├── README.md                                 # This file
+├── ch02-getting-started/                     # Chapter 2: Getting Started
 │   ├── basic-bgp-session.clab.yml
 │   └── configs/
-├── ch03-mpls-bgp-ipvpn/               # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-l3vpn.clab.yml
-│   ├── 02-inter-as-option-c.clab.yml
-│   ├── 03-route-target-constraint.clab.yml
+├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
+│   ├── 01-basic-l3vpn.clab.yml               # Basic L3VPN with R1-R6, RR1, CE1/CE3/CE4/CE6
+│   ├── 02-inter-as-option-c.clab.yml         # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
+│   ├── 03-route-target-constraint.clab.yml   # RTC lab with R1, R3, R4, R6, RR1
 │   └── configs/
-├── ch04-bgp-vpls/                     # Chapter 4: Using BGP in VPLS
+├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
 │   ├── bgp-vpls-autodiscovery.clab.yml
 │   └── configs/
-├── ch05-bgp-vpws/                     # Chapter 5: BGP Signalling for VPWS
+├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS
 │   ├── bgp-vpws.clab.yml
 │   └── configs/
-├── ch06-evpn/                         # Chapter 6: Ethernet VPN
+├── ch06-evpn/                                # Chapter 6: Ethernet VPN
 │   ├── 01-evpn-vpls.clab.yml
 │   ├── 02-evpn-rt5-ipprefix.clab.yml
 │   └── configs/
-├── ch07-labeled-unicast/              # Chapter 7: Labeled Unicast IPv4
+├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4
 │   ├── seamless-mpls-inter-as.clab.yml
 │   └── configs/
-├── ch08-segment-routing/              # Chapter 8: Segment Routing and BGP
+├── ch08-segment-routing/                     # Chapter 8: Segment Routing and BGP
 │   ├── sr-bgp-prefix-sid.clab.yml
 │   └── configs/
-├── ch09-reconvergence/                # Chapter 9: Reconvergence
+├── ch09-reconvergence/                       # Chapter 9: Reconvergence
 │   ├── addpath-pic.clab.yml
 │   └── configs/
-├── ch10-multicast/                    # Chapter 10: Multicast
+├── ch10-multicast/                           # Chapter 10: Multicast
 │   ├── mvpn.clab.yml
 │   └── configs/
-├── ch11-graceful-restart/             # Chapter 11: Graceful Restart
+├── ch11-graceful-restart/                    # Chapter 11: Graceful Restart
 │   ├── graceful-restart.clab.yml
 │   └── configs/
-├── ch12-security/                     # Chapter 12: Security
+├── ch12-security/                            # Chapter 12: Security
 │   ├── flowspec-rtbh.clab.yml
 │   └── configs/
-└── ch13-general-topics/               # Chapter 13: General Topics
+└── ch13-general-topics/                      # Chapter 13: General Topics
     ├── multipath-bgpls-orr.clab.yml
     └── configs/
 ```
