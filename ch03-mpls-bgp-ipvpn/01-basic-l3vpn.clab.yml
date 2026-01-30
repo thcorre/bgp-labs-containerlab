@@ -94,16 +94,16 @@ topology:
     - endpoints: ["R4:1/1/c1/1", "R5:1/1/c1/1"]
     - endpoints: ["R5:1/1/c2/1", "R6:1/1/c1/1"]
     
-    # Core links - Vertical connections to RR1
-    - endpoints: ["R2:1/1/c3/1", "RR1:1/1/c1/1"]
-    - endpoints: ["R5:1/1/c3/1", "RR1:1/1/c2/1"]
+    # Core links - connections to RR1
+    - endpoints: ["R5:1/1/c3/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R6:1/1/c3/1", "RR1:1/1/c2/1"]
     
     # Core links - Cross connections
-    - endpoints: ["R1:1/1/c3/1", "R4:1/1/c3/1"]
-    - endpoints: ["R3:1/1/c3/1", "R6:1/1/c3/1"]
+    - endpoints: ["R1:1/1/c2/1", "R4:1/1/c2/1"]
+    - endpoints: ["R3:1/1/c2/1", "R6:1/1/c2/1"]
     
     # PE to CE links
-    - endpoints: ["R1:1/1/c2/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
-    - endpoints: ["R3:1/1/c2/1", "CE3:eth1"]   # CE3: 172.31.3.0/24
-    - endpoints: ["R4:1/1/c2/1", "CE4:eth1"]   # CE4: 172.31.4.0/24
-    - endpoints: ["R6:1/1/c2/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
+    - endpoints: ["R1:1/1/c3/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R3:1/1/c3/1", "CE3:eth1"]   # CE3: 172.31.3.0/24
+    - endpoints: ["R4:1/1/c3/1", "CE4:eth1"]   # CE4: 172.31.4.0/24
+    - endpoints: ["R6:1/1/c4/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
