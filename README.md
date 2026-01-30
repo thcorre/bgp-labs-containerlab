@@ -106,8 +106,8 @@ bgp-labs/
 - VPNv4 address family
 - PE-CE routing (static and BGP)
 
-**Lab 2: 02-inter-as-option-c**
-- Inter-AS Option C (RFC 4364 Section 10c)
+**Lab 2: 02-inter-as-option-b**
+- Inter-AS Option B
 - EBGP labeled unicast between ASBRs
 - VPNv4 route exchange via Inter-AS Route Reflectors
 - Multi-hop EBGP for VPNv4
