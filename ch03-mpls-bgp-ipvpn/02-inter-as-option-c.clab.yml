@@ -1,29 +1,27 @@
 # =============================================================================
-# Lab: Inter-AS Option C
+# Lab: Inter-AS MPLS VPN (Type B - Option B)
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 3 - MPLS/BGP IP-VPNs (Multi-AS Backbones)
 # =============================================================================
 # This lab demonstrates:
-# - Inter-AS Option C (RFC 4364 Section 10c)
-# - EBGP labeled unicast between ASBRs
-# - VPNv4 route exchange via Inter-AS RRs
-# - Multi-hop EBGP for VPNv4
+# - Inter-AS Type B interconnect (EBGP VPN-IPv4 between ASBRs)
+# - Next-Hop-Self on ASBRs
+# - VPN label swapping at ASBRs
+# - inter-as-vpn configuration
+# - vpn-apply-import/export policies
 # =============================================================================
 #
-# Topology:
+# Topology (Figure 3-11 from book):
 #
-#    AS 64496                                        AS 64510
-#    +---------------------------+                  +---------------------------+
-#    |                           |                  |                           |
-#    | CE1---PE1---P1---ASBR1 ---+--- EBGP-LU ---+--- ASBR2---P2---PE2---CE2   |
-#    |        |         |        |                  |        |         |        |
-#    |        +-- RR1 --+        |                  |        +-- RR2 --+        |
-#    |                           |                  |                           |
-#    +---------------------------+                  +---------------------------+
-#                                      
-#                          VPNv4 via Multi-hop EBGP
-#                              RR1 <-----> RR2
+#                 AS 64496                    |                 AS 64497
+#                                             |
+#   CE1 ---- R1 ---- RR1 ---- ASBR1 -------- ASBR2 ---- RR2 ---- R6 ---- CE6
+#            |                  |      EBGP    |                  |
+#        192.0.2.1          192.0.2.2      192.0.2.5          192.0.2.6
+#                          192.0.2.10                        192.0.2.11
 #
+# VPN "one" spans both AS with RT 64496:1
+# ASBR1/ASBR2 perform VPN-IPv4 EBGP exchange with Next-Hop-Self
 # =============================================================================
 
 name: ch03-inter-as-option-c
@@ -39,62 +37,50 @@ topology:
 
   nodes:
     # AS 64496
-    PE1:
+    R1:
       kind: nokia_srsim
-      startup-config: configs/inter-as/PE1.partial.cfg
-      
-    P1:
-      kind: nokia_srsim
-      startup-config: configs/inter-as/P1.partial.cfg
+      startup-config: configs/02-R1.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/inter-as/RR1.partial.cfg
+      startup-config: configs/02-RR1.cfg
       
     ASBR1:
       kind: nokia_srsim
-      startup-config: configs/inter-as/ASBR1.partial.cfg
+      startup-config: configs/02-ASBR1.cfg
       
-    # AS 64510
+    # AS 64497
     ASBR2:
       kind: nokia_srsim
-      startup-config: configs/inter-as/ASBR2.partial.cfg
-      
-    P2:
-      kind: nokia_srsim
-      startup-config: configs/inter-as/P2.partial.cfg
+      startup-config: configs/02-ASBR2.cfg
       
     RR2:
       kind: nokia_srsim
-      startup-config: configs/inter-as/RR2.partial.cfg
+      startup-config: configs/02-RR2.cfg
       
-    PE2:
+    R6:
       kind: nokia_srsim
-      startup-config: configs/inter-as/PE2.partial.cfg
+      startup-config: configs/02-R6.cfg
       
-    # Customer Edge
+    # Customer Edge Routers
     CE1:
       kind: linux
       
-    CE2:
+    CE6:
       kind: linux
 
   links:
-    # AS 64496 internal
-    - endpoints: ["PE1:1/1/1", "P1:1/1/1"]
-    - endpoints: ["P1:1/1/2", "ASBR1:1/1/1"]
-    - endpoints: ["P1:1/1/3", "RR1:1/1/1"]
-    - endpoints: ["PE1:1/1/3", "RR1:1/1/2"]
+    # AS 64496 internal links
+    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
+    - endpoints: ["RR1:1/1/c2/1", "ASBR1:1/1/c1/1"]
     
-    # Inter-AS link (EBGP labeled unicast)
-    - endpoints: ["ASBR1:1/1/2", "ASBR2:1/1/1"]
+    # Inter-AS link (EBGP)
+    - endpoints: ["ASBR1:1/1/c2/1", "ASBR2:1/1/c1/1"]
     
-    # AS 64510 internal
-    - endpoints: ["ASBR2:1/1/2", "P2:1/1/1"]
-    - endpoints: ["P2:1/1/2", "PE2:1/1/1"]
-    - endpoints: ["P2:1/1/3", "RR2:1/1/1"]
-    - endpoints: ["PE2:1/1/3", "RR2:1/1/2"]
+    # AS 64497 internal links
+    - endpoints: ["ASBR2:1/1/c2/1", "RR2:1/1/c1/1"]
+    - endpoints: ["RR2:1/1/c2/1", "R6:1/1/c1/1"]
     
-    # CE connections
-    - endpoints: ["CE1:eth1", "PE1:1/1/2"]
-    - endpoints: ["CE2:eth1", "PE2:1/1/2"]
+    # PE to CE links
+    - endpoints: ["R1:1/1/c2/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R6:1/1/c2/1", "CE6:eth1"]   # CE6: 172.31.6.0/24

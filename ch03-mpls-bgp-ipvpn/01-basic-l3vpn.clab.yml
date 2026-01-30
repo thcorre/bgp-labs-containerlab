@@ -14,16 +14,15 @@
 #
 # Topology (Figure 3-2 from book):
 #
-#                       R1 ---------- R2 ---------- R3
-#   CE1 ---------------|              |              |------------- CE3
-#   172.31.1.0/24      192.0.2.1      192.0.2.2      192.0.2.3      172.31.3.0/24
-#                                     |
-#                                    RR1
-#                                   192.0.2.10
-#                                     |
-#                       R4 ---------- R5 ---------- R6
-#   CE4 ---------------|              |              |------------- CE6
-#   172.31.4.0/24      192.0.2.4      192.0.2.5      192.0.2.6      172.31.6.0/24
+# CE1 ------------------|R1----------- R2 ------------ R3|------------- CE3
+# 172.31.1.0/24     (192.0.2.1)   (192.0.2.2)     (192.0.2.3)      172.31.3.0/24            
+# 2001:db8:4001:1::/56   |              |               |       2001:db8:4001:3::/56
+#                        |              |     RR1       |
+#                        |              | (192.0.2.10)  |
+#                        |              | /          \  |
+# CE4 ------------------|R4 ---------- R5 ------------ R6|------------- CE6
+# 172.31.4.0/24     (192.0.2.4)   (192.0.2.5)     (192.0.2.6)      172.31.6.0/24
+# 2001.db8.4001.4::/56                                          2001:db8:4001:6::/56
 #
 # AS 64496 (Service Provider) - All routers R1-R6 and RR1
 # AS 64512 (Customer) - All CE routers
@@ -46,15 +45,15 @@ topology:
     # Provider Edge Routers
     R1:
       kind: nokia_srsim
-      startup-config: configs/R1.partial.cfg
+      startup-config: configs/01-R1.partial.cfg
       
     R2:
       kind: nokia_srsim
-      startup-config: configs/R2.partial.cfg
+      startup-config: configs/01-R2.partial.cfg
       
     R3:
       kind: nokia_srsim
-      startup-config: configs/R3.partial.cfg
+      startup-config: configs/01-R3.partial.cfg
 
     R4:
       kind: nokia_srsim
@@ -62,11 +61,11 @@ topology:
       
     R5:
       kind: nokia_srsim
-      startup-config: configs/R5.partial.cfg
+      startup-config: configs/01-R5.partial.cfg
       
     R6:
       kind: nokia_srsim
-      startup-config: configs/R6.partial.cfg
+      startup-config: configs/01-R6.partial.cfg
       
     # Route Reflector
     RR1:
