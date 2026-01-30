@@ -24,7 +24,7 @@
 # ASBR1/ASBR2 perform VPN-IPv4 EBGP exchange with Next-Hop-Self
 # =============================================================================
 
-name: ch03-inter-as-option-c
+name: ch03-inter-as-option-b
 
 topology:
   kinds:
@@ -39,28 +39,28 @@ topology:
     # AS 64496
     R1:
       kind: nokia_srsim
-      startup-config: configs/02-R1.cfg
+      startup-config: configs/02/R1.partial.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/02-RR1.cfg
+      startup-config: configs/02/RR1.partial.cfg
       
     ASBR1:
       kind: nokia_srsim
-      startup-config: configs/02-ASBR1.cfg
+      startup-config: configs/02/ASBR1.partial.cfg
       
     # AS 64497
     ASBR2:
       kind: nokia_srsim
-      startup-config: configs/02-ASBR2.cfg
+      startup-config: configs/02/ASBR2.partial.cfg
       
     RR2:
       kind: nokia_srsim
-      startup-config: configs/02-RR2.cfg
+      startup-config: configs/02/RR2.partial.cfg
       
     R6:
       kind: nokia_srsim
-      startup-config: configs/02-R6.cfg
+      startup-config: configs/02/R6.partial.cfg
       
     # Customer Edge Routers
     CE1:
