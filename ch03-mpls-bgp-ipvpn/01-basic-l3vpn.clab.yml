@@ -7,26 +7,28 @@
 # - Basic MPLS/BGP IP-VPN (RFC 4364)
 # - VRF configuration with Route Targets
 # - Route Distinguishers
-# - MP-BGP VPNv4 address family
-# - PE-CE routing (static and EBGP)
-# - Route Target Constraint (RTC)
+# - MP-BGP VPNv4/VPNv6 address family
+# - PE-CE routing with EBGP
 # - OSPF as PE-CE protocol with Sham-Links
 # =============================================================================
 #
-# Topology:
+# Topology (Figure 3-2 from book):
 #
-#   CE1 ---- PE1 -------- P1 -------- PE2 ---- CE2
-#   (VPN-A)   |            |            |   (VPN-A)
-#             |            |            |
-#   CE3 ------+            |            +------ CE4
-#   (VPN-B)                |                  (VPN-B)
-#                          |
-#                         PE3 ---- CE5
-#                                (VPN-A)
+#                       R1 ---------- R2 ---------- R3
+#   CE1 ---------------|              |              |------------- CE3
+#   172.31.1.0/24      192.0.2.1      192.0.2.2      192.0.2.3      172.31.3.0/24
+#                                     |
+#                                    RR1
+#                                   192.0.2.10
+#                                     |
+#                       R4 ---------- R5 ---------- R6
+#   CE4 ---------------|              |              |------------- CE6
+#   172.31.4.0/24      192.0.2.4      192.0.2.5      192.0.2.6      172.31.6.0/24
 #
-# AS 64496 (Service Provider)
-# VPN-A: RT 64496:100 (CE1, CE2, CE5)
-# VPN-B: RT 64496:200 (CE3, CE4)
+# AS 64496 (Service Provider) - All routers R1-R6 and RR1
+# AS 64512 (Customer) - All CE routers
+# IS-IS Level 2 flat area with LDP and SR-ISIS
+# VPN "one" with RT 64496:1
 # =============================================================================
 
 name: ch03-mpls-bgp-ipvpn
@@ -42,58 +44,67 @@ topology:
 
   nodes:
     # Provider Edge Routers
-    PE1:
+    R1:
       kind: nokia_srsim
-      startup-config: configs/PE1.partial.cfg
+      startup-config: configs/R1.partial.cfg
       
-    PE2:
+    R2:
       kind: nokia_srsim
-      startup-config: configs/PE2.partial.cfg
+      startup-config: configs/R2.partial.cfg
       
-    PE3:
+    R3:
       kind: nokia_srsim
-      startup-config: configs/PE3.partial.cfg
-      
-    # Provider Core Router
-    P1:
+      startup-config: configs/R3.partial.cfg
+
+    R4:
       kind: nokia_srsim
-      startup-config: configs/P1.partial.cfg
+      startup-config: configs/R4.partial.cfg
       
-    # Customer Edge Routers - VPN-A
+    R5:
+      kind: nokia_srsim
+      startup-config: configs/R5.partial.cfg
+      
+    R6:
+      kind: nokia_srsim
+      startup-config: configs/R6.partial.cfg
+      
+    # Route Reflector
+    RR1:
+      kind: nokia_srsim
+      startup-config: configs/RR1.cfg
+      
+    # Customer Edge Routers
     CE1:
-      kind: nokia_srsim
-      startup-config: configs/CE1.partial.cfg
+      kind: linux
       
-    CE2:
-      kind: nokia_srsim
-      startup-config: configs/CE2.partial.cfg
-      
-    CE5:
-      kind: nokia_srsim
-      startup-config: configs/CE5.partial.cfg
-      
-    # Customer Edge Routers - VPN-B
     CE3:
-      kind: nokia_srsim
-      startup-config: configs/CE3.partial.cfg
+      kind: linux
       
     CE4:
-      kind: nokia_srsim
-      startup-config: configs/CE4.partial.cfg
+      kind: linux
+      
+    CE6:
+      kind: linux
 
   links:
-    # Core links (MPLS backbone)
-    - endpoints: ["PE1:1/1/c1/1", "P1:1/1/c1/1"]
-    - endpoints: ["PE2:1/1/c1/1", "P1:1/1/c2/1"]
-    - endpoints: ["PE3:1/1/c1/1", "P1:1/1/c3/1"]
+    # Core links - Top row (R1-R2-R3)
+    - endpoints: ["R1:1/1/c1/1", "R2:1/1/c1/1"]
+    - endpoints: ["R2:1/1/c2/1", "R3:1/1/c1/1"]
     
-    # PE1 to CE links
-    - endpoints: ["PE1:1/1/c2/1", "CE1:1/1/c1/1"]  # VPN-A
-    - endpoints: ["PE1:1/1/c3/1", "CE3:1/1/c1/1"]  # VPN-B
+    # Core links - Bottom row (R4-R5-R6)
+    - endpoints: ["R4:1/1/c1/1", "R5:1/1/c1/1"]
+    - endpoints: ["R5:1/1/c2/1", "R6:1/1/c1/1"]
     
-    # PE2 to CE links
-    - endpoints: ["PE2:1/1/c2/1", "CE2:1/1/c1/1"]  # VPN-A
-    - endpoints: ["PE2:1/1/c3/1", "CE4:1/1/c1/1"]  # VPN-B
+    # Core links - Vertical connections to RR1
+    - endpoints: ["R2:1/1/c3/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R5:1/1/c3/1", "RR1:1/1/c2/1"]
     
-    # PE3 to CE links
-    - endpoints: ["PE3:1/1/c2/1", "CE5:1/1/c1/1"]  # VPN-A
+    # Core links - Cross connections
+    - endpoints: ["R1:1/1/c3/1", "R4:1/1/c3/1"]
+    - endpoints: ["R3:1/1/c3/1", "R6:1/1/c3/1"]
+    
+    # PE to CE links
+    - endpoints: ["R1:1/1/c2/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R3:1/1/c2/1", "CE3:eth1"]   # CE3: 172.31.3.0/24
+    - endpoints: ["R4:1/1/c2/1", "CE4:eth1"]   # CE4: 172.31.4.0/24
+    - endpoints: ["R6:1/1/c2/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
