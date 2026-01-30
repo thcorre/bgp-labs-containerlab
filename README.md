@@ -1,8 +1,8 @@
-# BGP Labs for Nokia SR-OS (Containerlab)
+# BGP Labs for Nokia SR OS (Containerlab)
 
 ## Overview
 
-This repository contains containerlab topology files and Nokia SR-OS configurations for hands-on labs based on **"[Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)"** by Colin Bookham.
+This repository contains containerlab topology files and Nokia SR OS configurations for hands-on labs based on **"[Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)"** by Colin Bookham.
 
 Each lab is designed to demonstrate specific BGP features and technologies covered in the book, allowing readers to gain practical experience with the concepts.
 
@@ -38,7 +38,7 @@ docker images | grep nokia_srsim
 
 ### License File
 
-Place your SR-OS license file at `/opt/nokia/sros/license.txt` or update the topology files to point to your license location.
+Place your SR OS license file at `/opt/nokia/sros/license.txt` or update the topology files to point to your license location.
 
 ---
 
@@ -51,9 +51,9 @@ bgp-labs/
 │   ├── basic-bgp-session.clab.yml
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-l3vpn.clab.yml               # Basic L3VPN with R1-R6, RR1, CE1/CE3/CE4/CE6
-│   ├── 02-inter-as-option-c.clab.yml         # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
-│   ├── 03-route-target-constraint.clab.yml   # RTC lab with R1, R3, R4, R6, RR1
+│   ├── 01-basic-l3vpn.clab.yml                 # Basic L3VPN with R1-R6, RR1, CE1/CE3/CE4/CE6
+│   ├── 02-inter-as-option-c.clab.yml           # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
+│   ├── 03-route-target-constraint.clab.yml     # RTC lab with R1, R3, R4, R6, RR1
 │   └── configs/
 ├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
 │   ├── bgp-vpls-autodiscovery.clab.yml
@@ -255,8 +255,8 @@ sudo containerlab destroy -t basic-l3vpn.clab.yml
 
 ## Configuration Notes
 
-### SR-OS MD-CLI Format
-All configurations use the SR-OS MD-CLI (Model-Driven CLI) format introduced in SR-OS 16.x. Key characteristics:
+### SR OS MD-CLI Format
+All configurations use the SR OS MD-CLI (Model-Driven CLI) format introduced in release 16. Key characteristics:
 - Hierarchical structure using curly braces `{}`
 - Configuration is applied atomically via `commit`
 - Uses YANG-based data models
@@ -321,7 +321,7 @@ configure service {
 
 1. **License not found**
    - Verify license file path in topology YAML
-   - Ensure license is valid for the SR-OS version
+   - Ensure license is valid for the SR OS version
 
 2. **Nodes not coming up**
    - Check Docker resources (CPU/memory)
@@ -369,4 +369,4 @@ Feel free to submit issues or pull requests to improve the labs or add new scena
 
 ## License
 
-These lab materials are provided for educational purposes. Nokia SR-OS requires appropriate licensing from Nokia.
+These lab materials are provided for educational purposes. Nokia SR OS requires appropriate licensing from Nokia.
