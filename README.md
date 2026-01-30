@@ -52,7 +52,7 @@ bgp-labs/
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
 │   ├── 01-basic-l3vpn.clab.yml                 # Basic L3VPN with R1-R6, RR1, CE1/CE3/CE4/CE6
-│   ├── 02-inter-as-option-c.clab.yml           # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
+│   ├── 02-inter-as-option-b.clab.yml           # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
 │   ├── 03-route-target-constraint.clab.yml     # RTC lab with R1, R3, R4, R6, RR1
 │   └── configs/
 ├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
