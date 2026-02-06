@@ -382,7 +382,7 @@ docker compose -f - up -d
 
 Now, you have to install the client plugin based on the OS of your PC.
 
-#### Windows
+#### Windows:
 
 Windows users get to enjoy a simple installer-based workflow that installs the URL handler and the Wireshark plugin in one go.
 
@@ -390,7 +390,7 @@ Download the [installer archive](https://github.com/siemens/cshargextcap/release
 
 Unzip the archive and launch the installer.
 
-#### MacOS
+#### MacOS:
 
 MacOS users have to suffer a little. But it is not that bad either.
 
@@ -419,7 +419,7 @@ The command above will open two Finder windows, one with the `cshargextcap` bina
 
 To access the Edgeshark UI, open a browser and navigate to the following URL:
 
-[http://localhost:5001)](http://localhost:5001)
+[http://localhost:5001](http://localhost:5001)
 
 Note, the http schema is important, since https is not enabled.
 
