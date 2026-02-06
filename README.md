@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains containerlab topology files and Nokia SR OS configurations for hands-on labs based on **"[Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)"** by Colin Bookham.
+This repository contains containerlab topology files and Nokia SR OS configurations for hands-on labs based on Colin Bookham's **"[Versatile Routing and Services with BGP - Volume II](http://tiny.cc/Nokia-BGP-book-vol2)"**.
 
 Each lab is designed to demonstrate specific BGP features and technologies covered in the book, allowing readers to gain practical experience with the concepts.
 
