@@ -14,13 +14,13 @@
 #
 # Topology (Figure 3-2 from book):
 #
-# CE1 ------------------|R1----------- R2 ------------ R3|------------- CE3
+# CE1 -------------------R1----------- R2 ------------ R3-------------- CE3
 # 172.31.1.0/24     (192.0.2.1)   (192.0.2.2)     (192.0.2.3)      172.31.3.0/24            
 # 2001:db8:4001:1::/56   |              |               |       2001:db8:4001:3::/56
 #                        |              |     RR1       |
 #                        |              | (192.0.2.10)  |
 #                        |              | /          \  |
-# CE4 ------------------|R4 ---------- R5 ------------ R6|------------- CE6
+# CE4 -------------------R4 ---------- R5 ------------ R6-------------- CE6
 # 172.31.4.0/24     (192.0.2.4)   (192.0.2.5)     (192.0.2.6)      172.31.6.0/24
 # 2001.db8.4001.4::/56                                          2001:db8:4001:6::/56
 #
@@ -74,7 +74,8 @@ topology:
       
     # Customer Edge Routers
     CE1:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/01/CE1.partial.cfg
       
     CE3:
       kind: linux
@@ -91,19 +92,20 @@ topology:
     - endpoints: ["R2:1/1/c2/1", "R3:1/1/c1/1"]
     
     # Core links - Bottom row (R4-R5-R6)
-    - endpoints: ["R4:1/1/c1/1", "R5:1/1/c1/1"]
-    - endpoints: ["R5:1/1/c2/1", "R6:1/1/c1/1"]
+    - endpoints: ["R4:1/1/c2/1", "R5:1/1/c2/1"]
+    - endpoints: ["R5:1/1/c3/1", "R6:1/1/c2/1"]
     
     # Core links - connections to RR1
-    - endpoints: ["R5:1/1/c3/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R5:1/1/c4/1", "RR1:1/1/c1/1"]
     - endpoints: ["R6:1/1/c3/1", "RR1:1/1/c2/1"]
     
     # Core links - Cross connections
     - endpoints: ["R1:1/1/c2/1", "R4:1/1/c2/1"]
-    - endpoints: ["R3:1/1/c2/1", "R6:1/1/c2/1"]
+    - endpoints: ["R2:1/1/c3/1", "R5:1/1/c1/1"]    
+    - endpoints: ["R3:1/1/c2/1", "R6:1/1/c1/1"]
     
     # PE to CE links
-    - endpoints: ["R1:1/1/c3/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R1:1/1/c3/1", "CE1:1/1/c1/1"]   # CE1: 172.31.1.0/24
     - endpoints: ["R3:1/1/c3/1", "CE3:eth1"]   # CE3: 172.31.3.0/24
     - endpoints: ["R4:1/1/c3/1", "CE4:eth1"]   # CE4: 172.31.4.0/24
     - endpoints: ["R6:1/1/c4/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
