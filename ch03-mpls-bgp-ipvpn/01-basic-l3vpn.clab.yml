@@ -16,13 +16,13 @@
 #
 # CE1 -------------------R1----------- R2 ------------ R3-------------- CE3
 # 172.31.1.0/24     (192.0.2.1)   (192.0.2.2)     (192.0.2.3)      172.31.3.0/24            
-# 2001:db8:4001:1::/56   |              |               |       2001:db8:4001:3::/56
+# 2001:db8:4001:100::/56   |              |               |       2001:db8:4001:300::/56
 #                        |              |     RR1       |
 #                        |              | (192.0.2.10)  |
 #                        |              | /          \  |
 # CE4 -------------------R4 ---------- R5 ------------ R6-------------- CE6
 # 172.31.4.0/24     (192.0.2.4)   (192.0.2.5)     (192.0.2.6)      172.31.6.0/24
-# 2001.db8.4001.4::/56                                          2001:db8:4001:6::/56
+# 2001.db8.4001.400::/56                                          2001:db8:4001:600::/56
 #
 # AS 64496 (Service Provider) - All routers R1-R6 and RR1
 # AS 64512 (Customer) - All CE routers
@@ -78,13 +78,16 @@ topology:
       startup-config: configs/01/CE1.partial.cfg
       
     CE3:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/01/CE3.partial.cfg
       
     CE4:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/01/CE4.partial.cfg
       
     CE6:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/01/CE6.partial.cfg
 
   links:
     # Core links - Top row (R1-R2-R3)
@@ -106,6 +109,6 @@ topology:
     
     # PE to CE links
     - endpoints: ["R1:1/1/c3/1", "CE1:1/1/c1/1"]   # CE1: 172.31.1.0/24
-    - endpoints: ["R3:1/1/c3/1", "CE3:eth1"]   # CE3: 172.31.3.0/24
-    - endpoints: ["R4:1/1/c3/1", "CE4:eth1"]   # CE4: 172.31.4.0/24
-    - endpoints: ["R6:1/1/c4/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
+    - endpoints: ["R3:1/1/c3/1", "CE3:1/1/c1/1"]   # CE3: 172.31.3.0/24
+    - endpoints: ["R4:1/1/c3/1", "CE4:1/1/c1/1"]   # CE4: 172.31.4.0/24
+    - endpoints: ["R6:1/1/c4/1", "CE6:1/1/c1/1"]   # CE6: 172.31.6.0/24
