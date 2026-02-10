@@ -45,32 +45,32 @@ topology:
     # Provider Edge Routers
     R1:
       kind: nokia_srsim
-      startup-config: configs/01-R1.partial.cfg
+      startup-config: configs/01/R1.partial.cfg
       
     R2:
       kind: nokia_srsim
-      startup-config: configs/01-R2.partial.cfg
+      startup-config: configs/01/R2.partial.cfg
       
     R3:
       kind: nokia_srsim
-      startup-config: configs/01-R3.partial.cfg
+      startup-config: configs/01/R3.partial.cfg
 
     R4:
       kind: nokia_srsim
-      startup-config: configs/R4.partial.cfg
+      startup-config: configs/01/R4.partial.cfg
       
     R5:
       kind: nokia_srsim
-      startup-config: configs/01-R5.partial.cfg
+      startup-config: configs/01/R5.partial.cfg
       
     R6:
       kind: nokia_srsim
-      startup-config: configs/01-R6.partial.cfg
+      startup-config: configs/01/R6.partial.cfg
       
     # Route Reflector
     RR1:
       kind: nokia_srsim
-      startup-config: configs/RR1.cfg
+      startup-config: configs/01/RR1.partial.cfg
       
     # Customer Edge Routers
     CE1:
