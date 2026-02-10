@@ -100,7 +100,7 @@ topology:
     - endpoints: ["R6:1/1/c3/1", "RR1:1/1/c2/1"]
     
     # Core links - Cross connections
-    - endpoints: ["R1:1/1/c2/1", "R4:1/1/c2/1"]
+    - endpoints: ["R1:1/1/c2/1", "R4:1/1/c1/1"]
     - endpoints: ["R2:1/1/c3/1", "R5:1/1/c1/1"]    
     - endpoints: ["R3:1/1/c2/1", "R6:1/1/c1/1"]
     
