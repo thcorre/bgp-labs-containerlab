@@ -1,0 +1,58 @@
+# =============================================================================
+# Lab: AS_PATH Visibility
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 3 - MPLS/BGP IP-VPNs
+# =============================================================================
+# This lab demonstrates:
+# - AS Path Encoding
+# =============================================================================
+#
+# Topology (Figure 3-6 from book):
+#
+# AS 64509                AS 64496                 AS 64510    
+#           EBGP            IBGP             EBGP        
+#   CE1 ------------ R1 ------------  R3 ------------ CE3
+#                     |                |                 
+#  172.31.1.0/24  192.0.2.1        192.0.2.3      
+#                       
+#
+# VPN "one" spans both R1 and R3 with RT 64496:1
+# =============================================================================
+
+name: ch03-as-path-encoding
+
+topology:
+  kinds:
+    nokia_srsim:
+      image: nokia_srsim:25.10.R2
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+    linux:
+      image: ghcr.io/hellt/network-multitool:latest
+
+  nodes:
+    # AS 64496
+    R1:
+      kind: nokia_srsim
+      startup-config: configs/02/R1.partial.cfg
+      
+    R3:
+      kind: nokia_srsim
+      startup-config: configs/02/R3.partial.cfg
+      
+    # Customer Edge Routers
+    CE1:
+      kind: nokia_srsim
+      startup-config: configs/02/CE1.partial.cfg
+      
+    CE3:
+      kind: nokia_srsim
+      startup-config: configs/02/CE3.partial.cfg
+
+  links:
+    # AS 64496 internal links
+    - endpoints: ["R1:1/1/c1/1", "R3:1/1/c1/1"]
+    
+    # PE to CE links
+    - endpoints: ["R1:1/1/c2/1", "CE1:1/1/c1/1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R3:1/1/c2/1", "CE3:1/1/c1/1"]   # CE3: 172.31.3.0/24
