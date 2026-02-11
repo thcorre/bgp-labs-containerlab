@@ -5,9 +5,11 @@
 # =============================================================================
 # This lab demonstrates:
 # - Basic MPLS/BGP IP-VPN (RFC 4364)
+# - VRF configuration with Route Targets
 # - Route Distinguishers
 # - MP-BGP VPNv4/VPNv6 address family
 # - PE-CE routing with EBGP
+# - OSPF as PE-CE protocol with Sham-Links
 # =============================================================================
 #
 # Topology (Figure 3-2 from book):
