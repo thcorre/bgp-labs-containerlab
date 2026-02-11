@@ -119,4 +119,4 @@ topology:
     - endpoints: ["R6:1/1/c4/1", "CE6:1/1/c1/1"]   # CE6: 192.168.116.0/24
 
     # CE to CE links
-    - endpoints: ["CE1:1/1/c2/1", "CE2:1/1/c2/1"]   # CE1 <-> CE2
+    - endpoints: ["CE1:1/1/c2/1", "CE4:1/1/c2/1"]   # CE1 <-> CE4
