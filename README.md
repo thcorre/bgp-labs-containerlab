@@ -42,7 +42,7 @@ Place your SR OS license file at `/opt/nokia/sros/license.txt` or update the top
 
 ---
 
-## Lab Directory Structure
+## Labs Directory Structure
 
 ```
 bgp-labs/
