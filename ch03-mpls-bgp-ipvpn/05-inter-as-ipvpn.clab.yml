@@ -24,7 +24,7 @@
 # ASBR1/ASBR2 perform VPN-IPv4 EBGP exchange with Next-Hop-Self
 # =============================================================================
 
-name: ch03-inter-as-option-b
+name: ch03-inter-as-ipvpn
 
 topology:
   kinds:
