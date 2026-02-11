@@ -50,49 +50,49 @@ topology:
   nodes:
     R1:
       kind: nokia_srsim
-      startup-config: configs/01/R1.partial.cfg
+      startup-config: configs/04/R1.partial.cfg
       
     R2:
       kind: nokia_srsim
-      startup-config: configs/01/R2.partial.cfg
+      startup-config: configs/04/R2.partial.cfg
       
     R3:
       kind: nokia_srsim
-      startup-config: configs/01/R3.partial.cfg
+      startup-config: configs/04/R3.partial.cfg
 
     R4:
       kind: nokia_srsim
-      startup-config: configs/01/R4.partial.cfg
+      startup-config: configs/04/R4.partial.cfg
       
     R5:
       kind: nokia_srsim
-      startup-config: configs/01/R5.partial.cfg
+      startup-config: configs/04/R5.partial.cfg
       
     R6:
       kind: nokia_srsim
-      startup-config: configs/01/R6.partial.cfg
+      startup-config: configs/04/R6.partial.cfg
       
     # Route Reflector
     RR1:
       kind: nokia_srsim
-      startup-config: configs/01/RR1.partial.cfg
+      startup-config: configs/04/RR1.partial.cfg
       
     # Customer Edge Routers
     CE1:
       kind: nokia_srsim
-      startup-config: configs/01/CE1.partial.cfg
+      startup-config: configs/04/CE1.partial.cfg
       
     CE3:
       kind: nokia_srsim
-      startup-config: configs/01/CE3.partial.cfg
+      startup-config: configs/04/CE3.partial.cfg
       
     CE4:
       kind: nokia_srsim
-      startup-config: configs/01/CE4.partial.cfg
+      startup-config: configs/04/CE4.partial.cfg
       
     CE6:
       kind: nokia_srsim
-      startup-config: configs/01/CE6.partial.cfg
+      startup-config: configs/04/CE6.partial.cfg
 
   links:
     # Core links - Top row (R1-R2-R3)
