@@ -51,39 +51,41 @@ bgp-labs/
 │   ├── basic-bgp-session.clab.yml
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-l3vpn.clab.yml                 # Basic L3VPN with R1-R6, RR1, CE1/CE3/CE4/CE6
-│   ├── 02-inter-as-option-b.clab.yml           # Inter-AS Type B with R1, ASBR1, ASBR2, R6, RR1, RR2
-│   ├── 03-route-target-constraint.clab.yml     # RTC lab with R1, R3, R4, R6, RR1
+│   ├── 01-basic-ipvpn.clab.yml                 # Basic IPVPN with R1-R6, RR1, CE1/CE3/CE4/CE6
+│   ├── 02-as-path-encoding.clab.yml            # AS_PATH Visibility with CE1, R1, R3, CE3
+│   ├── 03-route-target-constraint.clab.yml     # RTC lab with R1, R3, R4, R6, RR1, RR2
+│   ├── 04-ospf-pe-ce.clab.yml                  # OSPF as a PE to CE Protocol with R1-R6, RR1, CE1/CE3/CE4/CE6
+│   ├── 05-inter-as-ipvpn.clab.yml              # Multi-AS Backbones (Inter-AS) lab with CE1, R1, RR1, ASBR1, ASBR2, RR2, R6, CE6
 │   └── configs/
-├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
+├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS (Work In Progress)
 │   ├── bgp-vpls-autodiscovery.clab.yml
 │   └── configs/
-├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS
+├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS (Work In Progress)
 │   ├── bgp-vpws.clab.yml
 │   └── configs/
-├── ch06-evpn/                                # Chapter 6: Ethernet VPN
+├── ch06-evpn/                                # Chapter 6: Ethernet VPN (Work In Progress)
 │   ├── 01-evpn-vpls.clab.yml
 │   ├── 02-evpn-rt5-ipprefix.clab.yml
 │   └── configs/
-├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4
+├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
 │   ├── seamless-mpls-inter-as.clab.yml
 │   └── configs/
-├── ch08-segment-routing/                     # Chapter 8: Segment Routing and BGP
+├── ch08-segment-routing/                     # Chapter 8: Segment Routing and BGP (Work In Progress)
 │   ├── sr-bgp-prefix-sid.clab.yml
 │   └── configs/
-├── ch09-reconvergence/                       # Chapter 9: Reconvergence
+├── ch09-reconvergence/                       # Chapter 9: Reconvergence (Work In Progress)
 │   ├── addpath-pic.clab.yml
 │   └── configs/
-├── ch10-multicast/                           # Chapter 10: Multicast
+├── ch10-multicast/                           # Chapter 10: Multicast (Work In Progress)
 │   ├── mvpn.clab.yml
 │   └── configs/
-├── ch11-graceful-restart/                    # Chapter 11: Graceful Restart
+├── ch11-graceful-restart/                    # Chapter 11: Graceful Restart (Work In Progress)
 │   ├── graceful-restart.clab.yml
 │   └── configs/
-├── ch12-security/                            # Chapter 12: Security
+├── ch12-security/                            # Chapter 12: Security (Work In Progress)
 │   ├── flowspec-rtbh.clab.yml
 │   └── configs/
-└── ch13-general-topics/                      # Chapter 13: General Topics
+└── ch13-general-topics/                      # Chapter 13: General Topics (Work In Progress)
     ├── multipath-bgpls-orr.clab.yml
     └── configs/
 ```
