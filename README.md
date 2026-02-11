@@ -102,11 +102,11 @@ bgp-labs/
 - Multi-Protocol BGP (MP-BGP)
 
 ### Chapter 3: MPLS/BGP IP-VPNs
-**Lab 1: 01-basic-l3vpn**
+**Lab 1: 01-basic-ipvpn**
 - MPLS/BGP IP-VPN (RFC 4364)
 - VRF with Route Targets and Route Distinguishers
 - VPNv4 address family
-- PE-CE routing (static and BGP)
+- PE-CE BGP routing
 
 **Lab 2: 02-inter-as-option-b**
 - Inter-AS Option B
@@ -206,20 +206,20 @@ bgp-labs/
 cd bgp-labs/ch03-mpls-bgp-ipvpn
 
 # Deploy the lab
-sudo containerlab deploy -t basic-l3vpn.clab.yml
+sudo containerlab deploy -t 01-basic-ipvpn.clab.yml
 
 # View deployed nodes
-sudo containerlab inspect -t basic-l3vpn.clab.yml
+sudo containerlab inspect -t 01-basic-ipvpn.clab.yml
 ```
 
 ### Connecting to Nodes
 
 ```bash
-# SSH to a node (default: admin/admin)
-ssh admin@clab-ch03-mpls-bgp-ipvpn-PE1
+# SSH to a node (default: admin/NokiaSros1!)
+ssh admin@clab-ch03-mpls-bgp-ipvpn-R1
 
 # Or use docker exec
-docker exec -it clab-ch03-mpls-bgp-ipvpn-PE1 sr_cli
+docker exec -it clab-ch03-mpls-bgp-ipvpn-R1 sr_cli
 ```
 
 ### Useful Show Commands
@@ -241,7 +241,7 @@ show router bgp routes vpn-ipv4
 show router bgp routes evpn
 
 # Service status
-show service id 100 base
+show service id 1 base
 
 # MPLS labels
 show router mpls-labels summary
@@ -250,7 +250,7 @@ show router mpls-labels summary
 ### Destroying a Lab
 
 ```bash
-sudo containerlab destroy -t basic-l3vpn.clab.yml
+sudo containerlab destroy -t 01-basic-ipvpn.clab.yml
 ```
 
 ---
@@ -288,14 +288,14 @@ configure router "Base" {
 **VPRN (L3VPN) Configuration:**
 ```
 configure service {
-    vprn "VPN-A" {
+    vprn "one" {
         admin-state enable
-        service-id 100
+        service-id 1
         customer "1"
         bgp-ipvpn {
             mpls {
                 admin-state enable
-                route-distinguisher "64496:100"
+                route-distinguisher "64496:1"
                 vrf-target {
                     community "target:64496:100"
                 }
@@ -437,7 +437,7 @@ Note, the http schema is important, since https is not enabled.
 
 ## Contributing
 
-Feel free to submit issues or pull requests to improve the labs or add new scenarios.
+Feel free to submit issues or pull requests to improve the labs.
 
 ## License
 
