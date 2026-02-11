@@ -1,5 +1,5 @@
 # =============================================================================
-# Lab: MPLS/BGP IP-VPN (Layer 3 VPN)
+# Lab: OSPF as a PE to CE Protocol
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 3 - MPLS/BGP IP-VPNs
 # =============================================================================
@@ -8,29 +8,35 @@
 # - VRF configuration with Route Targets
 # - Route Distinguishers
 # - MP-BGP VPNv4/VPNv6 address family
-# - PE-CE routing with EBGP
 # - OSPF as PE-CE protocol with Sham-Links
 # =============================================================================
 #
-# Topology (Figure 3-2 from book):
+# Topology (Figure 3-9 from book):
 #
-# CE1 -------------------R1----------- R2 ------------ R3-------------- CE3
-# 172.31.1.0/24     (192.0.2.1)   (192.0.2.2)     (192.0.2.3)      172.31.3.0/24            
-# 2001:db8:4001:100::/56   |              |               |       2001:db8:4001:300::/56
-#                        |              |     RR1       |
-#                        |              | (192.0.2.10)  |
-#                        |              | /          \  |
-# CE4 -------------------R4 ---------- R5 ------------ R6-------------- CE6
-# 172.31.4.0/24     (192.0.2.4)   (192.0.2.5)     (192.0.2.6)      172.31.6.0/24
-# 2001.db8.4001.400::/56                                          2001:db8:4001:600::/56
+#     Area 1.0.0.0                                                 Area 2.0.0.0
+#  +-----------------+                                            +------------+
+#  |  CE1            |--- R1 ---------- R2 ---------- R3 ---------+    CE3     |
+#  |192.168.111.0/24 | 192.0.2.1    192.0.2.2      192.0.2.3      |  192.168.  |
+#  |   |             |    |             |             |           |  113.0/24  |
+#  |   |  Backdoor   |    |             |    RR1      |           +------------+
+#  |   |  link       |    |             |  192.0.2.10 |
+#  |   |             |    |             |   /      \  |            Area 3.0.0.0
+#. |   |             |    |             |  /        \ |           +------------+
+#  |  CE4            |--- R4 ---------- R5 ---------- R6 ---------+    CE6     |
+#  |192.168.114.0/24 |  192.0.2.4    192.0.2.5     192.0.2.6      |  192.168.  |
+#  |                 |                                            |  116.0/24  |
+#  +-----------------+                                            +------------+
 #
 # AS 64496 (Service Provider) - All routers R1-R6 and RR1
-# AS 64512 (Customer) - All CE routers
+# RR1:      Route Reflector connected to R5 and R6
 # IS-IS Level 2 flat area with LDP and SR-ISIS
-# VPN "one" with RT 64496:1
+# VPN "four" with RT 64496:4
+# CE1, CE4: OSPF Area 1.0.0.0 (with backdoor link between CE1 and CE4)
+# CE3:      OSPF Area 2.0.0.0
+# CE6:      OSPF Area 3.0.0.0
 # =============================================================================
 
-name: ch03-mpls-bgp-ipvpn
+name: ch03-ospf-pe-ce
 
 topology:
   kinds:
@@ -42,7 +48,6 @@ topology:
       image: ghcr.io/hellt/network-multitool:latest
 
   nodes:
-    # Provider Edge Routers
     R1:
       kind: nokia_srsim
       startup-config: configs/01/R1.partial.cfg
@@ -108,7 +113,10 @@ topology:
     - endpoints: ["R3:1/1/c2/1", "R6:1/1/c1/1"]
     
     # PE to CE links
-    - endpoints: ["R1:1/1/c3/1", "CE1:1/1/c1/1"]   # CE1: 172.31.1.0/24
-    - endpoints: ["R3:1/1/c3/1", "CE3:1/1/c1/1"]   # CE3: 172.31.3.0/24
-    - endpoints: ["R4:1/1/c3/1", "CE4:1/1/c1/1"]   # CE4: 172.31.4.0/24
-    - endpoints: ["R6:1/1/c4/1", "CE6:1/1/c1/1"]   # CE6: 172.31.6.0/24
+    - endpoints: ["R1:1/1/c3/1", "CE1:1/1/c1/1"]   # CE1: 192.168.111.0/24
+    - endpoints: ["R3:1/1/c3/1", "CE3:1/1/c1/1"]   # CE3: 192.168.113.0/24
+    - endpoints: ["R4:1/1/c3/1", "CE4:1/1/c1/1"]   # CE4: 192.168.114.0/24
+    - endpoints: ["R6:1/1/c4/1", "CE6:1/1/c1/1"]   # CE6: 192.168.116.0/24
+
+    # CE to CE links
+    - endpoints: ["CE1:1/1/c2/1", "CE2:1/1/c2/1"]   # CE1 <-> CE2

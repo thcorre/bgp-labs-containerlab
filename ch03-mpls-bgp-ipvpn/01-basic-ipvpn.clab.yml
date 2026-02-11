@@ -28,7 +28,7 @@
 # VPN "one" with RT 64496:1
 # =============================================================================
 
-name: ch03-mpls-bgp-ipvpn
+name: ch03-basic-ipvpn
 
 topology:
   kinds:
