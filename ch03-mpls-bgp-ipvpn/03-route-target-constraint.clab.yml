@@ -10,20 +10,30 @@
 # - RTC advertisement to Route Reflectors
 # =============================================================================
 #
-# Topology:
+# Topology (Figure 3-7 from book):
 #
-#    +--- PE1 (VPN-A, VPN-B) ---+
-#    |                          |
-#    +-------- RR (RTC) --------+
-#    |                          |
-#    +--- PE2 (VPN-A only) -----+
-#    |                          |
-#    +--- PE3 (VPN-B only) -----+
+#                                  AS 64496
 #
-# PE1: Hosts VPN-A (RT 64496:100) and VPN-B (RT 64496:200)
-# PE2: Hosts VPN-A only - should not receive VPN-B routes
-# PE3: Hosts VPN-B only - should not receive VPN-A routes
-# RR: Distributes routes with RTC filtering
+#              RR1              IBGP non-client                RR2
+#           192.0.2.10 ----------------------------------- 192.0.2.11
+#            /       \                                     /       \
+#    IBGP   /         \  IBGP                       IBGP  /         \  IBGP
+#   client /           \ client                    client/           \ client
+#         /             \                               /             \
+#        R1             R4                            R6              R3
+#     192.0.2.1      192.0.2.4                    192.0.2.6       192.0.2.3
+#
+# RT 64496:1                                                    RT 64496:1
+# 172.31.1.0/24                                                 172.31.3.0/24
+#                                                               RT 64496:2
+#                                                               192.168.100.0/24
+#
+# R1:  VPN with RT 64496:1 (172.31.1.0/24)
+# R3:  VPN with RT 64496:1 (172.31.3.0/24) and RT 64496:2 (192.168.100.0/24)
+# R4:  No VPN services
+# R6:  No VPN services
+# RR1: Route Reflector for R1, R4
+# RR2: Route Reflector for R6, R3
 # =============================================================================
 
 name: ch03-route-target-constraint
@@ -36,23 +46,34 @@ topology:
       license: /opt/nokia/sros/license.txt
 
   nodes:
-    PE1:
+    # AS 64496
+    R1:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE1.partial.cfg
+      startup-config: configs/03/R1.partial.cfg
       
-    PE2:
+    R4:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE2.partial.cfg
+      startup-config: configs/03/R4.partial.cfg
+
+    R3:
+      kind: nokia_srsim
+      startup-config: configs/03/R3.partial.cfg
       
-    PE3:
+    R6:
       kind: nokia_srsim
-      startup-config: configs/rtc/PE3.partial.cfg
-      
-    RR:
+      startup-config: configs/03/R6.partial.cfg
+
+    RR1:
       kind: nokia_srsim
-      startup-config: configs/rtc/RR.partial.cfg
+      startup-config: configs/03/RR1.partial.cfg
+
+    RR2:
+      kind: nokia_srsim
+      startup-config: configs/03/RR2.partial.cfg
 
   links:
-    - endpoints: ["PE1:1/1/1", "RR:1/1/1"]
-    - endpoints: ["PE2:1/1/1", "RR:1/1/2"]
-    - endpoints: ["PE3:1/1/1", "RR:1/1/3"]
+    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c2/1"]
+    - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c3/1"]
+    - endpoints: ["RR1:1/1/c1/1", "RR2:1/1/c1/1"]
+    - endpoints: ["R3:1/1/c1/1", "RR2:1/1/c2/1"]
+    - endpoints: ["R6:1/1/c1/1", "RR2:1/1/c3/1"]
