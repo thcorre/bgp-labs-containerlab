@@ -1,4 +1,4 @@
-# BGP Labs for Nokia SR OS (Containerlab)
+# BGP Labs for Nokia SR OS
 
 ## Overview
 
