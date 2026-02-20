@@ -88,5 +88,5 @@ topology:
     - endpoints: ["RR2:1/1/c2/1", "R6:1/1/c2/1"]
     
     # PE to CE links
-    - endpoints: ["R1:1/1/c3/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
-    - endpoints: ["R6:1/1/c3/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
+    - endpoints: ["R1:1/1/c3/1", "CE1:1/1/c1/1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R6:1/1/c3/1", "CE6:1/1/c1/1"]   # CE6: 172.31.6.0/24
