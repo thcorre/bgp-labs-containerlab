@@ -41,35 +41,37 @@ topology:
     # AS 64496
     R1:
       kind: nokia_srsim
-      startup-config: configs/02/R1.partial.cfg
+      startup-config: configs/05/R1.partial.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/02/RR1.partial.cfg
+      startup-config: configs/05/RR1.partial.cfg
       
     ASBR1:
       kind: nokia_srsim
-      startup-config: configs/02/ASBR1.partial.cfg
+      startup-config: configs/05/ASBR1.partial.cfg
       
     # AS 64497
     ASBR2:
       kind: nokia_srsim
-      startup-config: configs/02/ASBR2.partial.cfg
+      startup-config: configs/05/ASBR2.partial.cfg
       
     RR2:
       kind: nokia_srsim
-      startup-config: configs/02/RR2.partial.cfg
+      startup-config: configs/05/RR2.partial.cfg
       
     R6:
       kind: nokia_srsim
-      startup-config: configs/02/R6.partial.cfg
+      startup-config: configs/05/R6.partial.cfg
       
     # Customer Edge Routers
     CE1:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/05/CE1.partial.cfg
       
     CE6:
-      kind: linux
+      kind: nokia_srsim
+      startup-config: configs/05/CE6.partial.cfg
 
   links:
     # AS 64496 internal links
