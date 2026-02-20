@@ -1,28 +1,30 @@
-# =============================================================================
+# ===========================================================================================
 # Lab: Inter-AS MPLS VPN (Type B - Option B)
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 3 - MPLS/BGP IP-VPNs (Multi-AS Backbones)
-# =============================================================================
+# ===========================================================================================
 # This lab demonstrates:
 # - Inter-AS Type B interconnect (EBGP VPN-IPv4 between ASBRs)
 # - Next-Hop-Self on ASBRs
 # - VPN label swapping at ASBRs
 # - inter-as-vpn configuration
 # - vpn-apply-import/export policies
-# =============================================================================
+# ===========================================================================================
 #
 # Topology (Figure 3-11 from book):
 #
-#                 AS 64496                    |                 AS 64497
-#                                             |
-#   CE1 ---- R1 ---- RR1 ---- ASBR1 -------- ASBR2 ---- RR2 ---- R6 ---- CE6
-#            |                  |      EBGP    |                  |
-#        192.0.2.1          192.0.2.2      192.0.2.5          192.0.2.6
-#                          192.0.2.10                        192.0.2.11
+#                          RR1                               RR2
+#                       192.0.2.10                        192.0.2.11
+#                      /         \        VPN-IPv4       /          \
+#                     / AS 64496  \         EBGP        /  AS 64497  \
+#   CE1 ------------ R1 ----------- ASBR1 -------- ASBR2 ---------- R6 ------------- CE6
+# 172.31.1.0/24  192.0.2.1       192.0.2.2       192.0.2.5       192.0.2.6      172.31.6.0/24
+#                                  
+#                                                 
 #
 # VPN "one" spans both AS with RT 64496:1
 # ASBR1/ASBR2 perform VPN-IPv4 EBGP exchange with Next-Hop-Self
-# =============================================================================
+# ===========================================================================================
 
 name: ch03-inter-as-ipvpn
 
@@ -71,16 +73,18 @@ topology:
 
   links:
     # AS 64496 internal links
-    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
-    - endpoints: ["RR1:1/1/c2/1", "ASBR1:1/1/c1/1"]
+    - endpoints: ["R1:1/1/c1/1", "ASBR1:1/1/c1/1"]
+    - endpoints: ["R1:1/1/c2/1", "RR1:1/1/c1/1"]
+    - endpoints: ["ASBR1:1/1/c2/1", "RR1:1/1/c2/1"]
     
     # Inter-AS link (EBGP)
-    - endpoints: ["ASBR1:1/1/c2/1", "ASBR2:1/1/c1/1"]
+    - endpoints: ["ASBR1:1/1/c3/1", "ASBR2:1/1/c3/1"]
     
     # AS 64497 internal links
+    - endpoints: ["R6:1/1/c1/1", "ASBR2:1/1/c1/1"]
     - endpoints: ["ASBR2:1/1/c2/1", "RR2:1/1/c1/1"]
-    - endpoints: ["RR2:1/1/c2/1", "R6:1/1/c1/1"]
+    - endpoints: ["RR2:1/1/c2/1", "R6:1/1/c2/1"]
     
     # PE to CE links
-    - endpoints: ["R1:1/1/c2/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
-    - endpoints: ["R6:1/1/c2/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
+    - endpoints: ["R1:1/1/c3/1", "CE1:eth1"]   # CE1: 172.31.1.0/24
+    - endpoints: ["R6:1/1/c3/1", "CE6:eth1"]   # CE6: 172.31.6.0/24
