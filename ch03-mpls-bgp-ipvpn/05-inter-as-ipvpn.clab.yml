@@ -34,8 +34,6 @@ topology:
       image: nokia_srsim:25.10.R2
       type: sr-1
       license: /opt/nokia/sros/license.txt
-    linux:
-      image: ghcr.io/hellt/network-multitool:latest
 
   nodes:
     # AS 64496

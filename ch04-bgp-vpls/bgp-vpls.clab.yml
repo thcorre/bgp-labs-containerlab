@@ -12,12 +12,12 @@
 # Topology (Figure 4-3 from book):
 #                                          
 #     CE1 --------- R1                     R3 --------- CE3     
-#                192.0.2.1             192.0.2.3      
-#                        \              /                  
-#                         \     RR1    /              
-#                           192.0.2.10 
-#                         /  AS 64496   \                  
-#                        /               \            
+#      |         192.0.2.1             192.0.2.3      
+#      |                 \              /                  
+#      |                  \     RR1    /              
+#      |                    192.0.2.10 
+#      |                  /  AS 64496   \                  
+#      |                 /               \            
 #     CE4 --------- R4                     R6 --------- CE6     
 #                 192.0.2.4               192.0.2.6      
 #                                             
@@ -34,8 +34,6 @@ topology:
       image: nokia_srsim:25.10.R2
       type: sr-1
       license: /opt/nokia/sros/license.txt
-    linux:
-      image: ghcr.io/hellt/network-multitool:latest
 
   nodes:
     R1:
