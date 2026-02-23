@@ -57,7 +57,7 @@ bgp-labs/
 │   ├── 04-ospf-pe-ce.clab.yml                  # OSPF as a PE to CE Protocol with R1-R6, RR1, CE1/CE3/CE4/CE6
 │   ├── 05-inter-as-ipvpn.clab.yml              # Multi-AS Backbones (Inter-AS) lab with CE1, R1, RR1, ASBR1, ASBR2, RR2, R6, CE6
 │   └── configs/
-├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS (Work In Progress)
+├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
 │   ├── bgp-vpls-autodiscovery.clab.yml
 │   └── configs/
 ├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS (Work In Progress)
