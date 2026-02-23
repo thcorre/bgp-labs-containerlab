@@ -87,7 +87,7 @@ topology:
     - endpoints: ["CE1:1/1/c2/1", "CE4:1/1/c2/1"]
 
     # Single-homed CE3
-    - endpoints: ["CE3:1/1/c1/1", "R1:1/1/c3/1"]
+    - endpoints: ["CE3:1/1/c1/1", "R3:1/1/c3/1"]
     
     # Single-homed CE6
     - endpoints: ["CE6:1/1/c1/1", "R6:1/1/c3/1"]
