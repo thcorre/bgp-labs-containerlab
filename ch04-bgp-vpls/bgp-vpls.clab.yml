@@ -76,21 +76,18 @@ topology:
 
   links:
     # Core mesh
-    - endpoints: ["PE1:1/1/1", "RR:1/1/1"]
-    - endpoints: ["PE2:1/1/1", "RR:1/1/2"]
-    - endpoints: ["PE3:1/1/1", "RR:1/1/3"]
-    - endpoints: ["PE4:1/1/1", "RR:1/1/4"]
+    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
+    - endpoints: ["R3:1/1/c1/1", "RR1:1/1/c3/1"]
+    - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
     
-    # Multi-homed CE1
-    - endpoints: ["CE1:eth1", "PE1:1/1/2"]
-    - endpoints: ["CE1:eth2", "PE2:1/1/2"]
+    # Multi-homed CE1 and CE4
+    - endpoints: ["CE1:1/1/c1/1", "R1:1/1/c3/1"]
+    - endpoints: ["CE4:1/1/c1/1", "R4:1/1/c3/1"]
+    - endpoints: ["CE1:1/1/c2/1", "CE4:1/1/c2/1"]
+
+    # Single-homed CE3
+    - endpoints: ["CE3:1/1/c1/1", "R1:1/1/c3/1"]
     
-    # Single-homed CE2
-    - endpoints: ["CE2:eth1", "PE1:1/1/3"]
-    
-    # Multi-homed CE3
-    - endpoints: ["CE3:eth1", "PE3:1/1/2"]
-    - endpoints: ["CE3:eth2", "PE4:1/1/2"]
-    
-    # Single-homed CE4
-    - endpoints: ["CE4:eth1", "PE3:1/1/3"]
+    # Single-homed CE6
+    - endpoints: ["CE6:1/1/c1/1", "R6:1/1/c3/1"]
