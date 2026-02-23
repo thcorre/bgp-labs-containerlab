@@ -48,17 +48,17 @@ Place your SR OS license file at `/opt/nokia/sros/license.txt` or update the top
 bgp-labs/
 ├── README.md                                 # This file
 ├── ch02-getting-started/                     # Chapter 2: Getting Started
-│   ├── basic-bgp-session.clab.yml
+│   ├── basic-bgp-session.clab.yml                # Basic BGP IPv4 lab
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-ipvpn.clab.yml                 # Basic IPVPN with R1-R6, RR1, CE1/CE3/CE4/CE6
-│   ├── 02-as-path-encoding.clab.yml            # AS_PATH Visibility with CE1, R1, R3, CE3
-│   ├── 03-route-target-constraint.clab.yml     # RTC lab with R1, R3, R4, R6, RR1, RR2
-│   ├── 04-ospf-pe-ce.clab.yml                  # OSPF as a PE to CE Protocol with R1-R6, RR1, CE1/CE3/CE4/CE6
-│   ├── 05-inter-as-ipvpn.clab.yml              # Multi-AS Backbones (Inter-AS) lab with CE1, R1, RR1, ASBR1, ASBR2, RR2, R6, CE6
+│   ├── 01-basic-ipvpn.clab.yml                   # Basic IP-VPN lab
+│   ├── 02-as-path-encoding.clab.yml              # AS_PATH Visibility lab
+│   ├── 03-route-target-constraint.clab.yml       # RTC lab
+│   ├── 04-ospf-pe-ce.clab.yml                    # OSPF as a PE to CE Protocol lab
+│   ├── 05-inter-as-ipvpn.clab.yml                # Multi-AS Backbones (Inter-AS) lab
 │   └── configs/
 ├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
-│   ├── bgp-vpls-autodiscovery.clab.yml
+│   ├── bgp-vpls.clab.yml                         # BGP VPLS (AD, Signalling, Multi-Homing) lab
 │   └── configs/
 ├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS (Work In Progress)
 │   ├── bgp-vpws.clab.yml
@@ -108,11 +108,8 @@ bgp-labs/
 - VPNv4 address family
 - PE-CE BGP routing
 
-**Lab 2: 02-inter-as-option-b**
-- Inter-AS Option B
-- EBGP labeled unicast between ASBRs
-- VPNv4 route exchange via Inter-AS Route Reflectors
-- Multi-hop EBGP for VPNv4
+**Lab 2: 02-as-path-encoding**
+- AS Path Encoding (Global ASN, VRF ASN, Local-AS, no-prepend-global-as)
 
 **Lab 3: 03-route-target-constraint**
 - Route Target Constraint (RFC 4684)
@@ -120,11 +117,19 @@ bgp-labs/
 - Reduced VPNv4 table size on PEs
 - RTC advertisement to Route Reflectors
 
+**Lab 4: 04-ospf-pe-ce**
+- OSPF as PE-CE protocol with Sham-Links
+
+**Lab 5: 05-inter-as-ipvpn**
+- Inter-AS Type B interconnect (EBGP VPN-IPv4 between ASBRs)
+- Next-Hop-Self on ASBRs
+- VPN label swapping at ASBRs
+- vpn-apply-import/export policies
+
 ### Chapter 4: Using BGP in VPLS
-**Lab: bgp-vpls-autodiscovery**
-- BGP Auto-Discovery with LDP Signalling
+**Lab: bgp-vpls**
 - BGP Auto-Discovery and Signalling (RFC 4761)
-- VPLS Multi-Homing
+- BGP VPLS Multi-Homing
 
 ### Chapter 5: BGP Signalling for VPWS
 **Lab: bgp-vpws**
