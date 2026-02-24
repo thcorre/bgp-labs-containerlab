@@ -4,7 +4,6 @@
 # Chapter: 5 - BGP Signalling for VPWS
 # =============================================================================
 # This lab demonstrates:
-# - Single-homed VPWS with BGP signalling
 # - Multi-homed VPWS (Active/Standby)
 # - Pseudowire redundancy
 # =============================================================================
@@ -22,8 +21,7 @@
 #                 192.0.2.4                 
 #                                             
 #
-# VPWS-1: CE1 <-> CE2 (single-homed)
-# VPWS-2: CE3 <-> CE4 (multi-homed active/standby)
+# epipe "seven" : CE1/CE4 <-> CE3 (multi-homed active/standby)
 # =============================================================================
 
 name: ch05-bgp-vpws
@@ -38,31 +36,31 @@ topology:
   nodes:
     R1:
       kind: nokia_srsim
-      startup-config: configs/R1.partial.cfg
+      startup-config: configs/02/R1.partial.cfg
       
     R3:
       kind: nokia_srsim
-      startup-config: configs/R3.partial.cfg
+      startup-config: configs/02/R3.partial.cfg
       
     R4:
       kind: nokia_srsim
-      startup-config: configs/R4.partial.cfg
+      startup-config: configs/02/R4.partial.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/RR1.partial.cfg
+      startup-config: configs/02/RR1.partial.cfg
       
     CE1:
       kind: nokia_srsim
-      startup-config: configs/CE1.partial.cfg
+      startup-config: configs/02/CE1.partial.cfg
       
     CE3:
       kind: nokia_srsim
-      startup-config: configs/CE3.partial.cfg
+      startup-config: configs/02/CE3.partial.cfg
       
     CE4:
       kind: nokia_srsim
-      startup-config: configs/CE4.partial.cfg
+      startup-config: configs/02/CE4.partial.cfg
 
   links:
     # Core mesh
