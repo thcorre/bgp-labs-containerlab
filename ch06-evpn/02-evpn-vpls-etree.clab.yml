@@ -4,13 +4,11 @@
 # Chapter: 6 - Ethernet VPN
 # =============================================================================
 # This lab demonstrates:
-# - EVPN Route Types (1-4):
-#   - MAC Advertisement (Route Type 2)
-#   - Inclusive Multicast (Route Type 3)
-#   - Ethernet Segment (Route Type 4)
-#   - Multi-homing with Active/Active
-# - Proxy-ARP in EVPN
-# - Static Protected MACs
+# - EVPN Route Types (1-4)
+# - EVPN ETREE service
+# - MAC Advertisement (Route Type 2)
+# - Inclusive Multicast (Route Type 3)
+# - Ethernet Segment (Route Type 4)
 # =============================================================================
 #
 # Topology (Figure 6-6 from book):
@@ -29,6 +27,8 @@
 #
 # EVPN-VPLS with Route Target: 64496:100
 # Multi-homed CE3 with Ethernet Segment
+# ES-1: CE1 connected to PE1 and PE2
+# ES-2: CE3 connected to PE3 and PE4
 # =============================================================================
 
 name: ch06-evpn-vpls
