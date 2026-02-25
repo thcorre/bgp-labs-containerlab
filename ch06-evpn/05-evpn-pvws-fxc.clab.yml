@@ -1,0 +1,88 @@
+# =============================================================================
+# Lab: EVPN-VPLS (Ethernet VPN)
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 6 - Ethernet VPN
+# =============================================================================
+# This lab demonstrates:
+# - EVPN Route Types (1-4)
+# - EVPN ETREE service
+# =============================================================================
+#
+# Topology (Figure 6-6 from book):
+#                                          
+#     CE1 ------------------ R1                   R3     
+# IP 172.31.100.1         192.0.2.1            192.0.2.3      
+# MAC 52:54:00:bb:00:01        \              /        \         
+#                               \     RR1    /          \   
+#                                 192.0.2.10 ------------  CE3
+#                               /  AS 64496            / IP 172.31.100.3          
+#                              /                      /  MAC 52:54:00:bb:00:03      
+#     CE4 ------------------ R4                   R6      
+# IP 172.31.100.4         192.0.2.4            192.0.2.6      
+# MAC 52:54:00:bb:00:04
+#
+#
+# EVPN-VPLS with Route Target: 64496:100
+# Multi-homed CE3 with Ethernet Segment
+# ES-1: CE1 connected to PE1 and PE2
+# ES-2: CE3 connected to PE3 and PE4
+# =============================================================================
+
+name: ch06-evpn-vpls
+
+topology:
+  kinds:
+    nokia_srsim:
+      image: nokia_srsim:25.10.R2
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+
+  nodes:
+    R1:
+      kind: nokia_srsim
+      startup-config: configs/01/R1.partial.cfg
+      
+    R3:
+      kind: nokia_srsim
+      startup-config: configs/01/R3.partial.cfg
+      
+    R4:
+      kind: nokia_srsim
+      startup-config: configs/01/R4.partial.cfg
+
+    R6:
+      kind: nokia_srsim
+      startup-config: configs/01/R6.partial.cfg
+      
+    RR1:
+      kind: nokia_srsim
+      startup-config: configs/01/RR1.partial.cfg
+      
+    CE1:
+      kind: nokia_srsim
+      startup-config: configs/01/CE1.partial.cfg
+      
+    CE3:
+      kind: nokia_srsim
+      startup-config: configs/01/CE3.partial.cfg
+      
+    CE4:
+      kind: nokia_srsim
+      startup-config: configs/01/CE4.partial.cfg
+
+  links:
+    # Core mesh
+    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
+    - endpoints: ["R3:1/1/c1/1", "RR1:1/1/c3/1"]
+    - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
+    
+    # Multi-homed CE3
+    - endpoints: ["CE3:1/1/c1/1", "R3:1/1/c3/1"]
+    - endpoints: ["CE3:1/1/c2/1", "R6:1/1/c3/1"]
+
+    # Single-homed CE1
+    - endpoints: ["CE1:1/1/c1/1", "R1:1/1/c3/1"]
+    
+    # Single-homed CE4
+    - endpoints: ["CE4:1/1/c1/1", "R4:1/1/c3/1"]

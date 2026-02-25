@@ -1,35 +1,28 @@
-# =============================================================================
-# Lab: EVPN-VPLS (Ethernet VPN)
+# =========================================================================================
+# Lab: EVPN ETREE
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 6 - Ethernet VPN
-# =============================================================================
+# =========================================================================================
 # This lab demonstrates:
-# - EVPN Route Types (1-4)
 # - EVPN ETREE service
-# - MAC Advertisement (Route Type 2)
-# - Inclusive Multicast (Route Type 3)
-# - Ethernet Segment (Route Type 4)
-# =============================================================================
+# =========================================================================================
 #
-# Topology (Figure 6-6 from book):
+# Topology (Figure 6-13 from book):
 #                                          
-#     CE1 ------------------ R1                   R3     
-# IP 172.31.100.1         192.0.2.1            192.0.2.3      
-# MAC 52:54:00:bb:00:01        \              /        \         
-#                               \     RR1    /          \   
-#                                 192.0.2.10         LAG   CE3
-#                               /  AS 64496   \         / IP 172.31.100.3          
-#                              /               \       /  MAC 52:54:00:bb:00:03      
-#     CE4 ------------------ R4                   R6      
-# IP 172.31.100.4         192.0.2.4            192.0.2.6      
+#     CE1 ------------Leaf-- R1                        
+# IP 172.31.100.1         192.0.2.1                
+# MAC 52:54:00:bb:00:01        \                               
+#                               \     RR1                 
+#                                 192.0.2.10 ------------ R3 --Root----- CE3
+#                               /  AS 64496            192.0.2.3      IP 172.31.100.3          
+#                              /                                      MAC 52:54:00:bb:00:03      
+#     CE4 ------------Leaf-- R4                        
+# IP 172.31.100.4         192.0.2.4                  
 # MAC 52:54:00:bb:00:04
 #
 #
-# EVPN-VPLS with Route Target: 64496:100
-# Multi-homed CE3 with Ethernet Segment
-# ES-1: CE1 connected to PE1 and PE2
-# ES-2: CE3 connected to PE3 and PE4
-# =============================================================================
+# EVPN ETREE with Route Target: 64496:100
+# =========================================================================================
 
 name: ch06-evpn-vpls
 
@@ -43,49 +36,39 @@ topology:
   nodes:
     R1:
       kind: nokia_srsim
-      startup-config: configs/01/R1.partial.cfg
+      startup-config: configs/02/R1.partial.cfg
       
     R3:
       kind: nokia_srsim
-      startup-config: configs/01/R3.partial.cfg
+      startup-config: configs/02/R3.partial.cfg
       
     R4:
       kind: nokia_srsim
-      startup-config: configs/01/R4.partial.cfg
-
-    R6:
-      kind: nokia_srsim
-      startup-config: configs/01/R6.partial.cfg
+      startup-config: configs/02/R4.partial.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/01/RR1.partial.cfg
+      startup-config: configs/02/RR1.partial.cfg
       
     CE1:
       kind: nokia_srsim
-      startup-config: configs/01/CE1.partial.cfg
+      startup-config: configs/02/CE1.partial.cfg
       
     CE3:
       kind: nokia_srsim
-      startup-config: configs/01/CE3.partial.cfg
+      startup-config: configs/02/CE3.partial.cfg
       
     CE4:
       kind: nokia_srsim
-      startup-config: configs/01/CE4.partial.cfg
+      startup-config: configs/02/CE4.partial.cfg
 
   links:
     # Core mesh
     - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
     - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
     - endpoints: ["R3:1/1/c1/1", "RR1:1/1/c3/1"]
-    - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
-    
-    # Multi-homed CE3
-    - endpoints: ["CE3:1/1/c1/1", "R3:1/1/c3/1"]
-    - endpoints: ["CE3:1/1/c2/1", "R6:1/1/c3/1"]
 
-    # Single-homed CE1
+    # Single-homed CEs
     - endpoints: ["CE1:1/1/c1/1", "R1:1/1/c3/1"]
-    
-    # Single-homed CE4
+    - endpoints: ["CE3:1/1/c1/1", "R3:1/1/c3/1"]
     - endpoints: ["CE4:1/1/c1/1", "R4:1/1/c3/1"]
