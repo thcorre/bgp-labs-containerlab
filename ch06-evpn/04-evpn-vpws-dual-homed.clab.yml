@@ -31,7 +31,7 @@
 # ES-2: CE3 connected to PE3 and PE4
 # =============================================================================
 
-name: ch06-evpn-vpls
+name: ch06-evpn-vpws-dual-homed
 
 topology:
   kinds:

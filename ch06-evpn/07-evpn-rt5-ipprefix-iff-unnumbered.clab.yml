@@ -23,7 +23,7 @@
 # Data Center Fabric with EVPN RT-5 for L3 routing
 # =============================================================================
 
-name: ch06-evpn-rt5-ipprefix
+name: ch06-evpn-rt5-ipprefix-iff-unnumbered
 
 topology:
   kinds:

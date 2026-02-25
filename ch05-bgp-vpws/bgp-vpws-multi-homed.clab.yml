@@ -24,7 +24,7 @@
 # epipe "seven" : CE1/CE4 <-> CE3 (multi-homed active/standby)
 # =============================================================================
 
-name: ch05-bgp-vpws
+name: ch05-bgp-vpws-multi-homed
 
 topology:
   kinds:

@@ -24,7 +24,7 @@
 # EVPN ETREE with Route Target: 64496:100
 # =========================================================================================
 
-name: ch06-evpn-vpls
+name: ch06-evpn-vpls-etree
 
 topology:
   kinds:

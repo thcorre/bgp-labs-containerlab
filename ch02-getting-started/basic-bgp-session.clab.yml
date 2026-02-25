@@ -30,7 +30,7 @@
 #
 # =============================================================================
 
-name: ch02-basic-bgp
+name: ch02-basic-bgp-session
 
 topology:
   kinds:

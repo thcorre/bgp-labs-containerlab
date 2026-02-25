@@ -23,7 +23,7 @@
 # epipe "seven": CE1 <-> CE3 (single-homed)
 # =============================================================================
 
-name: ch05-bgp-vpws
+name: ch05-bgp-vpws-single-homed
 
 topology:
   kinds:
