@@ -38,27 +38,27 @@ topology:
   nodes:
     R3:
       kind: nokia_srsim
-      startup-config: configs/01/R3.partial.cfg
+      startup-config: configs/03/R3.partial.cfg
       
     R4:
       kind: nokia_srsim
-      startup-config: configs/01/R4.partial.cfg
+      startup-config: configs/03/R4.partial.cfg
 
     R6:
       kind: nokia_srsim
-      startup-config: configs/01/R6.partial.cfg
+      startup-config: configs/03/R6.partial.cfg
       
     RR1:
       kind: nokia_srsim
-      startup-config: configs/01/RR1.partial.cfg
+      startup-config: configs/03/RR1.partial.cfg
       
     CE3:
       kind: nokia_srsim
-      startup-config: configs/01/CE3.partial.cfg
+      startup-config: configs/03/CE3.partial.cfg
       
     CE4:
       kind: nokia_srsim
-      startup-config: configs/01/CE4.partial.cfg
+      startup-config: configs/03/CE4.partial.cfg
 
   links:
     # Core mesh
