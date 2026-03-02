@@ -1,0 +1,83 @@
+# ================================================================================================================================
+# Lab: EVPN-VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 6 - Ethernet VPN
+# ================================================================================================================================
+# This lab demonstrates:
+# - EVPN-VPWS with Flexible Cross-Connect (FXC)
+# - FXC VLAN-Signalled mode with S-tag:C-tag normalisation
+# - QinQ SAP mapping across EVPN-VPWS pseudowires
+# - EPIPE service with BGP EVPN signalling
+# ================================================================================================================================
+#
+# Topology (Figure 6-21 from book):
+#
+#                                                    R4                     R6
+#  +-----------------------+                   +-------------+       +-------------+                      +----------------------+
+#  |         CE4           |                   |  EPIPE 10   |       |   EPIPE 10  |                      |          CE6         |
+#  |                       |                   |    Norm.    |       |     Norm.   |                      |                      |
+#  |        VRF 48         | 1/1/c4/1  1/1/c5/1| S-tag:C-tag |       | S-tag:C-tag | 1/2/c1/1    1/1/c5/1 |        VRF 48        |
+#  | SAP 1/1/c4/1:48.1024  o------48.1024------o 10:1        |       |        10:1 o-------176.801-------o SAP 1/1/c5/1:176.1024 |
+#  |                       |                   |             |  EVPN |             |                      |                      |
+#  |       VRF 172         |                   |        BGP  |  VPWS | BGP         |                      |        VRF 172       |
+#  | SAP 1/1/c4/1:172.908  o------172.908------o 10:2   EVPN |       | EVPN   10:2 o-------176.100-------o SAP 1/1/c5/1:176.100  |
+#  |                       |                   |             |       |             |                      |                      |
+#  |       VRF 174         |                   |             |       |                                    |        VRF 174       | 
+#  | SAP 1/1/c5/1:174.2018 o-----174.2018------o 10:3        |       |        10:3 o-------176.200-------o SAP 1/1/c5/1:176.200  |
+#  |                       | 1/1/c5/1  1/1/c6/1|             |       |             |                      |                      |
+#  +-----------------------+                   +-------------+       +-------------+                      +----------------------+
+
+#
+# FXC Normalisation on R4 (EPIPE 10):
+#   SAP 1/1/c4/1:48.1024   -> local VPWS ID 10:1 (S-tag 48, C-tag 1024)
+#   SAP 1/1/c4/1:172.908   -> local VPWS ID 10:2 (S-tag 172, C-tag 908)
+#   SAP 1/1/c5/1:174.2018  -> local VPWS ID 10:3 (S-tag 174, C-tag 2018)
+#
+# FXC Normalisation on R6 (EPIPE 10):
+#   remote VPWS ID 10:1 -> SAP 1/2/c1/1:176.801
+#   remote VPWS ID 10:2 -> SAP 1/2/c1/1:176.100
+#   remote VPWS ID 10:3 -> SAP 1/1/c5/1:176.200
+#
+# ================================================================================================================================
+
+name: ch06-evpn-vpws-fxc
+
+topology:
+  kinds:
+    nokia_srsim:
+      image: nokia_srsim:25.10.R2
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+
+  nodes:      
+    R4:
+      kind: nokia_srsim
+      startup-config: configs/06/R4.partial.cfg
+
+    R6:
+      kind: nokia_srsim
+      startup-config: configs/06/R6.partial.cfg
+      
+    RR1:
+      kind: nokia_srsim
+      startup-config: configs/06/RR1.partial.cfg
+      
+    CE4:
+      kind: nokia_srsim
+      startup-config: configs/06/CE4.partial.cfg
+
+    CE6:
+      kind: nokia_srsim
+      startup-config: configs/06/CE6.partial.cfg
+
+  links:
+    # Core
+    - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
+    - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
+    
+    # CE4-R4 EVPN-VPWS with FXC Normalisation
+    - endpoints: ["CE4:1/1/c4/1", "R4:1/1/c5/1"]
+    - endpoints: ["CE4:1/1/c5/1", "R4:1/1/c6/1"]
+
+    # CE6-R6 EVPN-VPWS with FXC Normalisation
+    - endpoints: ["CE6:1/1/c5/1", "R6:1/2/c1/1"]
