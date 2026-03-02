@@ -1,5 +1,5 @@
 # =============================================================================
-# Lab: EVPN-VPWS Single-homed (Ethernet VPN)
+# Lab: EVPN-VPWS Single-homed
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 6 - Ethernet VPN
 # =============================================================================
@@ -18,11 +18,11 @@
 #     CE4 ------------- R4 ---------- RR1         LAG     CE3
 # IP 172.31.100.4   192.0.2.4     192.0.2.10          / / IP 172.31.100.3
 #                                  AS 64496          / /           
-#                                                   / /                            
+#                                           \       / /                            
 #                                              R6      
-#                                          192.0.2.6      
+#                                           192.0.2.6      
 # 
-#
+# Note: LAG not in use in this lab (only single link R6-CE3 is used).
 #
 # =============================================================================
 
@@ -61,7 +61,7 @@ topology:
       startup-config: configs/03/CE4.partial.cfg
 
   links:
-    # Core mesh
+    # Core
     - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
     - endpoints: ["R3:1/1/c1/1", "RR1:1/1/c3/1"]
     - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
