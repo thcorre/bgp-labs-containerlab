@@ -1,26 +1,41 @@
 # =============================================================================
-# Lab: EVPN IP Prefix (Route-Type 5)
+# Lab: EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model
 # Book: Versatile Routing and Services with BGP - Volume II
 # Chapter: 6 - Ethernet VPN (continued)
 # =============================================================================
 # This lab demonstrates:
 # - EVPN Route-Type 5 (IP Prefix Advertisement)
 # - Interface-ful with SBD IRB model
-# - Interface-less IP-VRF-to-IP-VRF model
-# - EVPN-VXLAN overlay
+# - EVPN + VXLAN overlay within each Data Centre
+# - SR-MPLS underlay between Data Centres (IS-IS Level 2)
+# - VPN-IPv4/IPv6 and EVPN address families via IBGP RR
+# - IPv4 EBGP between NVEs and VAs (PE-CE)
 # =============================================================================
 #
-# Topology:
+# Topology (Figure 6-25 from book):
 #
-#    Host1 --- Leaf1 ----------- Spine1 ----------- Leaf3 --- Host3
-#                \                 |                /
-#                 \               |               /
-#                  +--- Spine2 --+--- Spine2 ----+
-#                 /               |               \
-#                /                |                \
-#    Host2 --- Leaf2 ----------- Spine1 ----------- Leaf4 --- Host4
+#                                    R1                R3     
+#   ..............................192.0.2.1         192.0.2.3............................
+#   : Data Centre 1               /    : \          /  : \                Data Centre 2 :
+#   :                            /     :  \        /   :  \                             :
+#   :                           /      :   \      /    :   \                            :
+#   :                          /       :    \    /     :    \                           :
+#   :      AS 65501           /        :     \  /      :     \           AS 65502       :
+#   :      +------+          /         :      RR1      :      \          +------+       :
+#   : VA1--| NVE1 |------  VPLS        :  192.0.2.10   :     VPLS -------| NVE2 |--VA2  :
+#   :      +------+    192.168.1.0/24  :    /     \    :192.168.2.0/24   +------+       :
+#   :                          \       :   /       \   :    /                           :
+#   : 172.16.1.0/24             \      :  /         \  :   /               172.16.2.0/24:
+#   :                            \     : / AS 64496  \ :  /                             :
+#   :                             \     /             \  /                              :
+#   :..............................  R4                R6 ...............................       
+#                                192.0.2.4         192.0.2.6
 #
-# Data Center Fabric with EVPN RT-5 for L3 routing
+# 
+#          <-- IPv4 EBGP -->       <-- IS-IS Level 2 -->       <-- IPv4 EBGP -->
+#          <--    EVPN   -->       <-- VPN-IPv4/IPv6 -->       <--    EVPN   -->
+#          <--   VXLAN   -->       <--    SR-MPLS    -->       <--   VXLAN   -->
+#
 # =============================================================================
 
 name: ch06-evpn-rt5-ipprefix-iff
@@ -31,27 +46,23 @@ topology:
       image: nokia_srsim:25.10.R2
       type: sr-1
       license: /opt/nokia/sros/license.txt
-    linux:
-      image: ghcr.io/hellt/network-multitool:latest
 
   nodes:
-    # Spine switches
-    Spine1:
+    R1:
       kind: nokia_srsim
-      startup-config: configs/Spine1.partial.cfg
+      startup-config: configs/R1.partial.cfg
       
-    Spine2:
+    R3:
       kind: nokia_srsim
-      startup-config: configs/Spine2.partial.cfg
+      startup-config: configs/R3.partial.cfg
       
-    # Leaf switches (VTEP/PE)
-    Leaf1:
+    R4:
       kind: nokia_srsim
-      startup-config: configs/Leaf1.partial.cfg
+      startup-config: configs/R4.partial.cfg
       
-    Leaf2:
+    R6:
       kind: nokia_srsim
-      startup-config: configs/Leaf2.partial.cfg
+      startup-config: configs/R6.partial.cfg
       
     Leaf3:
       kind: nokia_srsim
