@@ -84,12 +84,15 @@ topology:
       exec:
         - ip address add 172.16.1.1/24 dev eth1
         - ip link set dev eth1 address 00:01:ff:ff:ff:49
+        - ip route add 172.16.2.0/24 dev eth1
+
       
     VA2:
       kind: linux
       exec:
         - ip address add 172.16.2.1/24 dev eth1
         - ip link set dev eth1 address 00:29:ff:ff:ff:49
+        - ip route add 172.16.1.0/24 dev eth1
 
   links:
     # DC connections
