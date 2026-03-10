@@ -82,16 +82,18 @@ topology:
       kind: linux
 
   links:
-    # Spine-Leaf fabric
-    - endpoints: ["Spine1:1/1/1", "Leaf1:1/1/1"]
-    - endpoints: ["Spine1:1/1/2", "Leaf2:1/1/1"]
-    - endpoints: ["Spine1:1/1/3", "Leaf3:1/1/1"]
-    - endpoints: ["Spine1:1/1/4", "Leaf4:1/1/1"]
-    - endpoints: ["Spine2:1/1/1", "Leaf1:1/1/2"]
-    - endpoints: ["Spine2:1/1/2", "Leaf2:1/1/2"]
-    - endpoints: ["Spine2:1/1/3", "Leaf3:1/1/2"]
-    - endpoints: ["Spine2:1/1/4", "Leaf4:1/1/2"]
-    
+    # DC connections
+    - endpoints: ["NVE1:1/1/c1/1", "R1:1/1/c3/1"]
+    - endpoints: ["NVE1:1/1/c2/1", "R4:1/1/c3/1"]
+    - endpoints: ["NVE2:1/1/c1/1", "R3:1/1/c3/1"]
+    - endpoints: ["NVE2:1/1/c2/1", "R6:1/1/c3/1"]
+
+    # Core connections
+    - endpoints: ["R1:1/1/c1/1", "RR1:1/1/c1/1"]
+    - endpoints: ["R4:1/1/c1/1", "RR1:1/1/c2/1"]
+    - endpoints: ["R3:1/1/c1/1", "RR1:1/1/c3/1"]
+    - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
+
     # Host connections
     - endpoints: ["VA1:eth1", "NVE1:1/1/c1/2"]
     - endpoints: ["VA2:eth1", "NVE2:1/1/c1/2"]
