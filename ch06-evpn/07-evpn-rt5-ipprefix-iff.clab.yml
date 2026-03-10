@@ -105,5 +105,5 @@ topology:
     - endpoints: ["R6:1/1/c1/1", "RR1:1/1/c4/1"]
 
     # Host connections
-    - endpoints: ["VA1:eth1", "NVE1:1/1/c1/2"]
-    - endpoints: ["VA2:eth1", "NVE2:1/1/c1/2"]
+    - endpoints: ["VA1:eth1", "NVE1:1/1/c3/1"]
+    - endpoints: ["VA2:eth1", "NVE2:1/1/c3/1"]
