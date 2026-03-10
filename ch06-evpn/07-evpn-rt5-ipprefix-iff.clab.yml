@@ -65,7 +65,11 @@ topology:
     R6:
       kind: nokia_srsim
       startup-config: configs/07/R6.partial.cfg
-      
+
+    RR1:
+      kind: nokia_srsim
+      startup-config: configs/07/RR1.partial.cfg
+
     NVE1:
       kind: nokia_srsim
       startup-config: configs/07/NVE1.partial.cfg
