@@ -73,7 +73,7 @@ bgp-labs/
 │   ├── 06-evpn-vpws-fxc-vlan.clab.yml                # EVPN-VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
 │   ├── 07-evpn-rt5-ipprefix-iff.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model lab
 │   ├── 08-evpn-rt5-ipprefix-iff-unnumbered.clab.yml  # EVPN IP Prefix (Route-Type 5) - Interface-ful with unnumbered SBD IRB model lab
-│   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml
+│   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-Less IP-VRF-to-IP-VRF model lab
 │   └── configs/
 ├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
 │   ├── seamless-mpls-inter-as.clab.yml
