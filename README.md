@@ -61,8 +61,8 @@ bgp-labs/
 │   ├── bgp-vpls.clab.yml                         # BGP VPLS (AD, Signalling, Multi-Homing) lab
 │   └── configs/
 ├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS
-│   ├── bgp-vpws-single-homed.clab.yml            # Single-homed VPWS lab
-│   ├── bgp-vpws-multi-homed.clab.yml             # Multi-homed VPWS (Active/Standby) lab
+│   ├── 01-bgp-vpws-single-homed.clab.yml            # Single-homed VPWS lab
+│   ├── 02-bgp-vpws-multi-homed.clab.yml             # Multi-homed VPWS (Active/Standby) lab
 │   └── configs/
 ├── ch06-evpn/                                # Chapter 6: Ethernet VPN (Work In Progress)
 │   ├── 01-evpn-vpls.clab.yml
