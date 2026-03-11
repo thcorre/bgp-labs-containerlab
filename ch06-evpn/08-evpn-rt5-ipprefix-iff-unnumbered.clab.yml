@@ -9,7 +9,7 @@
 # - EVPN + VXLAN overlay within each Data Centre
 # - SR-MPLS underlay between Data Centres (IS-IS Level 2)
 # - VPN-IPv4 address families via IBGP RR
-# - IPv4 EBGP underlay between NVEs and VAs
+# - IPv4 EBGP underlay between NVEs and Rs
 # =======================================================================================
 #
 # Topology (Figure 6-28 from book):
