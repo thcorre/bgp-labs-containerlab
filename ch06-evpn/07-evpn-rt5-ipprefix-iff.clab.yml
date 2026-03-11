@@ -1,15 +1,15 @@
 # =======================================================================================
 # Lab: EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model
 # Book: Versatile Routing and Services with BGP - Volume II
-# Chapter: 6 - Ethernet VPN (continued)
+# Chapter: 6 - Ethernet VPN
 # =======================================================================================
 # This lab demonstrates:
 # - EVPN Route-Type 5 (IP Prefix Advertisement)
 # - Interface-ful with SBD IRB model
 # - EVPN + VXLAN overlay within each Data Centre
 # - SR-MPLS underlay between Data Centres (IS-IS Level 2)
-# - VPN-IPv4/IPv6 and EVPN address families via IBGP RR
-# - IPv4 EBGP between NVEs and VAs (PE-CE)
+# - VPN-IPv4 address families via IBGP RR
+# - IPv4 EBGP underlay between NVEs and VAs
 # =======================================================================================
 #
 # Topology (Figure 6-25 from book):
