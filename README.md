@@ -64,7 +64,7 @@ bgp-labs/
 │   ├── 01-bgp-vpws-single-homed.clab.yml             # Single-homed VPWS lab
 │   ├── 02-bgp-vpws-multi-homed.clab.yml              # Multi-homed VPWS (Active/Standby) lab
 │   └── configs/
-├── ch06-evpn/                                    # Chapter 6: Ethernet VPN (Work In Progress)
+├── ch06-evpn/                                    # Chapter 6: Ethernet VPN
 │   ├── 01-evpn-vpls.clab.yml                         # EVPN VPLS lab
 │   ├── 02-evpn-vpls-etree.clab.yml                   # EVPN ETREE lab
 │   ├── 03-evpn-vpws-single-homed.clab.yml            # EVPN-VPWS Single-homed lab
