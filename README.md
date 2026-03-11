@@ -46,27 +46,34 @@ Place your SR OS license file at `/opt/nokia/sros/license.txt` or update the top
 
 ```
 bgp-labs/
-├── README.md                                 # This file
-├── ch02-getting-started/                     # Chapter 2: Getting Started
-│   ├── basic-bgp-session.clab.yml                # Basic BGP IPv4 lab
+├── README.md                                     # This file
+├── ch02-getting-started/                         # Chapter 2: Getting Started
+│   ├── basic-bgp-session.clab.yml                    # Basic BGP IPv4 lab
 │   └── configs/
-├── ch03-mpls-bgp-ipvpn/                      # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-ipvpn.clab.yml                   # Basic IP-VPN lab
-│   ├── 02-as-path-encoding.clab.yml              # AS_PATH Visibility lab
-│   ├── 03-route-target-constraint.clab.yml       # RTC lab
-│   ├── 04-ospf-pe-ce.clab.yml                    # OSPF as a PE to CE Protocol lab
-│   ├── 05-inter-as-ipvpn.clab.yml                # Multi-AS Backbones (Inter-AS) lab
+├── ch03-mpls-bgp-ipvpn/                          # Chapter 3: MPLS/BGP IP-VPNs
+│   ├── 01-basic-ipvpn.clab.yml                       # Basic IP-VPN lab
+│   ├── 02-as-path-encoding.clab.yml                  # AS_PATH Visibility lab
+│   ├── 03-route-target-constraint.clab.yml           # RTC lab
+│   ├── 04-ospf-pe-ce.clab.yml                        # OSPF as a PE to CE Protocol lab
+│   ├── 05-inter-as-ipvpn.clab.yml                    # Multi-AS Backbones (Inter-AS) lab
 │   └── configs/
-├── ch04-bgp-vpls/                            # Chapter 4: Using BGP in VPLS
-│   ├── bgp-vpls.clab.yml                         # BGP VPLS (AD, Signalling, Multi-Homing) lab
+├── ch04-bgp-vpls/                                # Chapter 4: Using BGP in VPLS
+│   ├── bgp-vpls.clab.yml                             # BGP VPLS (AD, Signalling, Multi-Homing) lab
 │   └── configs/
-├── ch05-bgp-vpws/                            # Chapter 5: BGP Signalling for VPWS
-│   ├── 01-bgp-vpws-single-homed.clab.yml            # Single-homed VPWS lab
-│   ├── 02-bgp-vpws-multi-homed.clab.yml             # Multi-homed VPWS (Active/Standby) lab
+├── ch05-bgp-vpws/                                # Chapter 5: BGP Signalling for VPWS
+│   ├── 01-bgp-vpws-single-homed.clab.yml             # Single-homed VPWS lab
+│   ├── 02-bgp-vpws-multi-homed.clab.yml              # Multi-homed VPWS (Active/Standby) lab
 │   └── configs/
-├── ch06-evpn/                                # Chapter 6: Ethernet VPN (Work In Progress)
-│   ├── 01-evpn-vpls.clab.yml
-│   ├── 02-evpn-rt5-ipprefix.clab.yml
+├── ch06-evpn/                                    # Chapter 6: Ethernet VPN (Work In Progress)
+│   ├── 01-evpn-vpls.clab.yml                         # EVPN VPLS lab
+│   ├── 02-evpn-vpls-etree.clab.yml                   # EVPN ETREE lab
+│   ├── 03-evpn-vpws-single-homed.clab.yml            # EVPN-VPWS Single-homed lab
+│   ├── 04-evpn-vpws-dual-homed.clab.yml              # EVPN-VPWS Dual-homed (single-active) lab
+│   ├── 05-evpn-vpws-fxc-default.clab.yml             # EVPN-VPWS Flexible Cross-Connect (FXC) - Default Mode lab
+│   ├── 06-evpn-vpws-fxc-vlan.clab.yml                # EVPN-VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
+│   ├── 07-evpn-rt5-ipprefix-iff.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model lab
+│   ├── 08-evpn-rt5-ipprefix-iff-unnumbered.clab.yml  # EVPN IP Prefix (Route-Type 5) - Interface-ful with unnumbered SBD IRB model lab
+│   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-Less IP-VRF-to-IP-VRF model lab
 │   └── configs/
 ├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
 │   ├── seamless-mpls-inter-as.clab.yml
