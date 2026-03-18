@@ -1,0 +1,115 @@
+# =============================================================================
+# Lab: Labeled Unicast IPv4 - Seamless MPLS Inter-Domain Routing
+# Book: Versatile Routing and Services with BGP - Volume II
+# Chapter: 7 - Labeled Unicast IPv4
+# =============================================================================
+#
+# This lab demonstrates:
+# - Seamless MPLS inter-domain routing with BGP Labeled Unicast (BGP-LU)
+# - Multi-instance IS-IS (Level 2) across aggregation and core domains
+# - BGP Next-Hop-Self (NHS) at domain boundaries (ABRs)
+# - End-to-end label-switched path across multiple IGP domains
+# - LDP/RSVP/SR transport within each domain (SR used in configuration)
+#
+# =============================================================================
+#
+# Topology (Figure 7-4 from book):
+#
+#    Aggregation Domain 1       Core Domain       Aggregation Domain 2
+#   +--------------------+ +-------------------+ +--------------------+
+#                       
+#     AGN2 ------------ ABR2 ---------------- ABR4 ------------- AGN4  
+#   192.0.2.2            |                      |              192.0.2.4
+#       |                |                      |                 |
+#       |                |                      |                 |
+#     AGN1 ------------ ABR1 ---------------- ABR3 ------------- AGN3  
+#   192.0.2.1           (RR)                  (RR)            192.0.2.3
+#                    192.0.2.101           192.0.2.103       
+#
+#
+# Control Plane Details:
+#   IGP (IS-IS Level 2):
+#     Instance 1: Aggregation Domain 1 (AGN1, AGN2, ABR1, ABR2)
+#     Instance 3: Core Domain          (ABR1, ABR2, ABR3, ABR4)
+#     Instance 3: Aggregation Domain 2 (ABR3, ABR4, AGN3, AGN4)
+#
+#   Labeled BGP (BGP-LU) propagation for prefix 192.0.2.3 (AGN3):
+#
+#     Aggregation 1          Core Domain          Aggregation 2
+#   +-------------------+ +-------------------+ +-------------------+
+#   | Labelled BGP      | | Labelled BGP      | | Labelled BGP      |
+#   | Prefix 192.0.2.3  | | Prefix 192.0.2.3  | | Prefix 192.0.2.3  |
+#   | Label L3          | | Label L2          | | Label L1          |
+#   | Next-Hop ABR1     | | Next-Hop ABR3     | | Next-Hop AGN3     |
+#   +-------------------+ +-------------------+ +-------------------+
+#             |         NHS         |         NHS         |
+#   +-------------------+ +-------------------+ +-------------------+
+#   |   LDP/RSVP/SR     | |   LDP/RSVP/SR     | |   LDP/RSVP/SR     |
+#   +-------------------+ +-------------------+ +-------------------+
+#
+#   ABR1 (RR) and ABR3 (RR) perform Next-Hop-Self (NHS) to stitch
+#   BGP-LU across domain boundaries, swapping labels at each hop.
+#
+# =============================================================================
+
+name: ch07-carrier-supporting-carrier.clab
+
+topology:
+  kinds:
+    nokia_srsim:
+      image: nokia_srsim:25.10.R2
+      type: sr-1
+      license: /opt/nokia/sros/license.txt
+
+  nodes:
+    # Aggregation Domain 1
+    AGN1:
+      kind: nokia_srsim
+      startup-config: configs/01/AGN1.partial.cfg
+
+    AGN2:
+      kind: nokia_srsim
+      startup-config: configs/01/AGN2.partial.cfg
+
+    # Domain Boundary - Core (Route Reflectors)
+    ABR1:
+      kind: nokia_srsim
+      startup-config: configs/01/ABR1.partial.cfg
+
+    ABR2:
+      kind: nokia_srsim
+      startup-config: configs/01/ABR2.partial.cfg
+
+    ABR3:
+      kind: nokia_srsim
+      startup-config: configs/01/ABR3.partial.cfg
+
+    ABR4:
+      kind: nokia_srsim
+      startup-config: configs/01/ABR4.partial.cfg
+
+    # Aggregation Domain 2
+    AGN3:
+      kind: nokia_srsim
+      startup-config: configs/01/AGN3.partial.cfg
+
+    AGN4:
+      kind: nokia_srsim
+      startup-config: configs/01/AGN4.partial.cfg
+
+  links:
+    # Aggregation Domain 1 links (IS-IS Level 2)
+    - endpoints: ["AGN1:1/1/c1/1", "ABR1:1/1/c1/3"]
+    - endpoints: ["AGN2:1/1/c1/1", "ABR2:1/1/c1/3"]
+    - endpoints: ["AGN1:1/1/c1/2", "AGN2:1/1/c1/2"]
+
+    # Core Domain links (IS-IS Level 2)
+    - endpoints: ["ABR1:1/1/c1/1", "ABR2:1/1/c1/1"]
+    - endpoints: ["ABR3:1/1/c1/1", "ABR4:1/1/c1/1"]    
+    - endpoints: ["ABR1:1/1/c1/2", "ABR3:1/1/c1/2"]
+    - endpoints: ["ABR2:1/1/c1/2", "ABR4:1/1/c1/2"]
+
+    # Aggregation Domain 2 links (IS-IS Level 2)
+    - endpoints: ["ABR3:1/1/c1/3", "AGN3:1/1/c1/1"]
+    - endpoints: ["ABR4:1/1/c1/3", "AGN4:1/1/c1/1"]
+    - endpoints: ["AGN3:1/1/c1/2", "AGN4:1/1/c1/2"]
