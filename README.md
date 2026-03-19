@@ -67,16 +67,20 @@ bgp-labs/
 ├── ch06-evpn/                                    # Chapter 6: Ethernet VPN
 │   ├── 01-evpn-vpls.clab.yml                         # EVPN VPLS lab
 │   ├── 02-evpn-vpls-etree.clab.yml                   # EVPN ETREE lab
-│   ├── 03-evpn-vpws-single-homed.clab.yml            # EVPN-VPWS Single-homed lab
-│   ├── 04-evpn-vpws-dual-homed.clab.yml              # EVPN-VPWS Dual-homed (single-active) lab
-│   ├── 05-evpn-vpws-fxc-default.clab.yml             # EVPN-VPWS Flexible Cross-Connect (FXC) - Default Mode lab
-│   ├── 06-evpn-vpws-fxc-vlan.clab.yml                # EVPN-VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
+│   ├── 03-evpn-vpws-single-homed.clab.yml            # EVPN VPWS Single-homed lab
+│   ├── 04-evpn-vpws-dual-homed.clab.yml              # EVPN VPWS Dual-homed (single-active) lab
+│   ├── 05-evpn-vpws-fxc-default.clab.yml             # EVPN VPWS Flexible Cross-Connect (FXC) - Default Mode lab
+│   ├── 06-evpn-vpws-fxc-vlan.clab.yml                # EVPN VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
 │   ├── 07-evpn-rt5-ipprefix-iff.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model lab
 │   ├── 08-evpn-rt5-ipprefix-iff-unnumbered.clab.yml  # EVPN IP Prefix (Route-Type 5) - Interface-ful with unnumbered SBD IRB model lab
 │   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-Less IP-VRF-to-IP-VRF model lab
 │   └── configs/
-├── ch07-labeled-unicast/                     # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
-│   ├── seamless-mpls-inter-as.clab.yml
+├── ch07-labeled-unicast/                         # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
+│   ├── 01-seamless-mpls-inter-domain.clab.yml        # Seamless MPLS (inter-domain routing) lab
+│   ├── 02-bgp-ldp-fec-stitching.clab.yml             # BGP-LDP FEC stitching lab
+│   ├── 03-inter-as-option-c.clab.yml                 # Inter-AS Option C lab
+│   ├── 04-carrier-supporting-carrier.clab.yml        # Carrier Supporting Carrier (CSC) lab
+│   ├── 05-6pe.clab.yml                               # IPv6 PE Router (6PE) lab
 │   └── configs/
 ├── ch08-segment-routing/                     # Chapter 8: Segment Routing and BGP (Work In Progress)
 │   ├── sr-bgp-prefix-sid.clab.yml
