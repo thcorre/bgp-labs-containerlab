@@ -48,57 +48,74 @@ Place your SR OS license file at `/opt/nokia/sros/license.txt` or update the top
 bgp-labs/
 ├── README.md                                     # This file
 ├── ch02-getting-started/                         # Chapter 2: Getting Started
-│   ├── basic-bgp-session.clab.yml                    # Basic BGP IPv4 lab
+│   ├── basic-bgp-session.clab.yml                        # Basic BGP IPv4 lab
 │   └── configs/
 ├── ch03-mpls-bgp-ipvpn/                          # Chapter 3: MPLS/BGP IP-VPNs
-│   ├── 01-basic-ipvpn.clab.yml                       # Basic IP-VPN lab
-│   ├── 02-as-path-encoding.clab.yml                  # AS_PATH Visibility lab
-│   ├── 03-route-target-constraint.clab.yml           # RTC lab
-│   ├── 04-ospf-pe-ce.clab.yml                        # OSPF as a PE to CE Protocol lab
-│   ├── 05-inter-as-ipvpn.clab.yml                    # Multi-AS Backbones (Inter-AS) lab
+│   ├── 01-basic-ipvpn.clab.yml                           # Basic IP-VPN lab
+│   ├── 02-as-path-encoding.clab.yml                      # AS_PATH Visibility lab
+│   ├── 03-route-target-constraint.clab.yml               # RTC lab
+│   ├── 04-ospf-pe-ce.clab.yml                            # OSPF as a PE to CE Protocol lab
+│   ├── 05-inter-as-ipvpn.clab.yml                        # Multi-AS Backbones (Inter-AS) lab
 │   └── configs/
 ├── ch04-bgp-vpls/                                # Chapter 4: Using BGP in VPLS
-│   ├── bgp-vpls.clab.yml                             # BGP VPLS (AD, Signalling, Multi-Homing) lab
+│   ├── bgp-vpls.clab.yml                                 # BGP VPLS (AD, Signalling, Multi-Homing) lab
 │   └── configs/
 ├── ch05-bgp-vpws/                                # Chapter 5: BGP Signalling for VPWS
-│   ├── 01-bgp-vpws-single-homed.clab.yml             # Single-homed VPWS lab
-│   ├── 02-bgp-vpws-multi-homed.clab.yml              # Multi-homed VPWS (Active/Standby) lab
+│   ├── 01-bgp-vpws-single-homed.clab.yml                 # Single-homed VPWS lab
+│   ├── 02-bgp-vpws-multi-homed.clab.yml                  # Multi-homed VPWS (Active/Standby) lab
 │   └── configs/
 ├── ch06-evpn/                                    # Chapter 6: Ethernet VPN
-│   ├── 01-evpn-vpls.clab.yml                         # EVPN VPLS lab
-│   ├── 02-evpn-vpls-etree.clab.yml                   # EVPN ETREE lab
-│   ├── 03-evpn-vpws-single-homed.clab.yml            # EVPN VPWS Single-homed lab
-│   ├── 04-evpn-vpws-dual-homed.clab.yml              # EVPN VPWS Dual-homed (single-active) lab
-│   ├── 05-evpn-vpws-fxc-default.clab.yml             # EVPN VPWS Flexible Cross-Connect (FXC) - Default Mode lab
-│   ├── 06-evpn-vpws-fxc-vlan.clab.yml                # EVPN VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
-│   ├── 07-evpn-rt5-ipprefix-iff.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model lab
-│   ├── 08-evpn-rt5-ipprefix-iff-unnumbered.clab.yml  # EVPN IP Prefix (Route-Type 5) - Interface-ful with unnumbered SBD IRB model lab
-│   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml             # EVPN IP Prefix (Route-Type 5) - Interface-Less IP-VRF-to-IP-VRF model lab
+│   ├── 01-evpn-vpls.clab.yml                             # EVPN VPLS lab
+│   ├── 02-evpn-vpls-etree.clab.yml                       # EVPN ETREE lab
+│   ├── 03-evpn-vpws-single-homed.clab.yml                # EVPN VPWS Single-homed lab
+│   ├── 04-evpn-vpws-dual-homed.clab.yml                  # EVPN VPWS Dual-homed (single-active) lab
+│   ├── 05-evpn-vpws-fxc-default.clab.yml                 # EVPN VPWS Flexible Cross-Connect (FXC) - Default Mode lab
+│   ├── 06-evpn-vpws-fxc-vlan.clab.yml                    # EVPN VPWS Flexible Cross-Connect (FXC) - VLAN-Signalled Mode lab
+│   ├── 07-evpn-rt5-ipprefix-iff.clab.yml                 # EVPN IP Prefix (Route-Type 5) - Interface-ful with SBD IRB model lab
+│   ├── 08-evpn-rt5-ipprefix-iff-unnumbered.clab.yml      # EVPN IP Prefix (Route-Type 5) - Interface-ful with unnumbered SBD IRB model lab
+│   ├── 09-evpn-rt5-ipprefix-ifl.clab.yml                 # EVPN IP Prefix (Route-Type 5) - Interface-Less IP-VRF-to-IP-VRF model lab
 │   └── configs/
 ├── ch07-labeled-unicast/                         # Chapter 7: Labeled Unicast IPv4 (Work In Progress)
-│   ├── 01-seamless-mpls-inter-domain.clab.yml        # Seamless MPLS (inter-domain routing) lab
-│   ├── 02-bgp-ldp-fec-stitching.clab.yml             # BGP-LDP FEC stitching lab
-│   ├── 03-inter-as-option-c.clab.yml                 # Inter-AS Option C lab
-│   ├── 04-carrier-supporting-carrier.clab.yml        # Carrier Supporting Carrier (CSC) lab
-│   ├── 05-6pe.clab.yml                               # IPv6 PE Router (6PE) lab
+│   ├── 01-seamless-mpls-inter-domain.clab.yml            # Seamless MPLS (inter-domain routing) lab
+│   ├── 02-bgp-ldp-fec-stitching.clab.yml                 # BGP-LDP FEC stitching lab
+│   ├── 03-inter-as-option-c.clab.yml                     # Inter-AS Option C lab
+│   ├── 04-carrier-supporting-carrier.clab.yml            # Carrier Supporting Carrier (CSC) lab
+│   ├── 05-6pe.clab.yml                                   # IPv6 PE Router (6PE) lab
 │   └── configs/
-├── ch08-segment-routing/                     # Chapter 8: Segment Routing and BGP (Work In Progress)
-│   ├── sr-bgp-prefix-sid.clab.yml
+├── ch08-segment-routing/                         # Chapter 8: Segment Routing and BGP (Work In Progress)
+│   ├── 01-inter-domain-sr-mpls-bgp-prefix-sid.clab.yml
+│   ├── 02-sr-policy.clab.yml
+│   ├── 03-srv6-policy.clab.yml
 │   └── configs/
-├── ch09-reconvergence/                       # Chapter 9: Reconvergence (Work In Progress)
-│   ├── addpath-pic.clab.yml
+├── ch09-reconvergence/                           # Chapter 9: Reconvergence (Work In Progress)
+│   ├── 01-add-path.clab.yml
+│   ├── 02-best-external.clab.yml
+│   ├── 03-next-hop-tracking.clab.yml
+│   ├── 04-edge-pic.clab.yml
+│   ├── 05-delayed-route-advertisement.clab.yml
+│   ├── 06-tcp-mss.clab.yml
 │   └── configs/
-├── ch10-multicast/                           # Chapter 10: Multicast (Work In Progress)
-│   ├── mvpn.clab.yml
+├── ch10-multicast/                               # Chapter 10: Multicast (Work In Progress)
+│   ├── 01-inter-domain-ipv4.clab.yml
+│   ├── 02-draft-rosen.clab.yml
+│   ├── 03-inter-as-draft-rosen.clab.yml
+│   ├── 04-mvpn.clab.yml
 │   └── configs/
-├── ch11-graceful-restart/                    # Chapter 11: Graceful Restart (Work In Progress)
-│   ├── graceful-restart.clab.yml
+├── ch11-graceful-restart/                        # Chapter 11: Graceful Restart (Work In Progress)
+│   ├── graceful-restart-error-handling.clab.yml
 │   └── configs/
-├── ch12-security/                            # Chapter 12: Security (Work In Progress)
-│   ├── flowspec-rtbh.clab.yml
+├── ch12-security/                                # Chapter 12: Security (Work In Progress)
+│   ├── 01-flowspec.clab.yml
+│   ├── 02-rtbh.clab.yml
+│   ├── 03-rpki.clab.yml
 │   └── configs/
-└── ch13-general-topics/                      # Chapter 13: General Topics (Work In Progress)
-    ├── multipath-bgpls-orr.clab.yml
+└── ch13-general-topics/                          # Chapter 13: General Topics (Work In Progress)
+    ├── 01-load-balancing-multipath.clab.yml
+    ├── 02-ibgp-multipath.clab.yml
+    ├── 03-eibgp-multipath.clab.yml
+    ├── 04-bgp-ls.clab.yml
+    ├── 05-orr.clab.yml
+    ├── 06-route-policy.clab.yml
     └── configs/
 ```
 
