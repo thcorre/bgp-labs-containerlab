@@ -123,38 +123,6 @@ bgp-labs/
 
 ## Chapter Labs Overview
 
-### Chapter 2: Getting Started
-**Lab: basic-bgp-session**
-- Basic EBGP and IBGP session configuration
-- Session negotiation and capabilities
-- BGP Finite State Machine (FSM)
-- Multi-Protocol BGP (MP-BGP)
-
-### Chapter 3: MPLS/BGP IP-VPNs
-**Lab 1: 01-basic-ipvpn**
-- MPLS/BGP IP-VPN (RFC 4364)
-- VRF with Route Targets and Route Distinguishers
-- VPNv4 address family
-- PE-CE BGP routing
-
-**Lab 2: 02-as-path-encoding**
-- AS Path Encoding (Global ASN, VRF ASN, Local-AS, no-prepend-global-as)
-
-**Lab 3: 03-route-target-constraint**
-- Route Target Constraint (RFC 4684)
-- Automatic Route Filtering
-- Reduced VPNv4 table size on PEs
-- RTC advertisement to Route Reflectors
-
-**Lab 4: 04-ospf-pe-ce**
-- OSPF as PE-CE protocol with Sham-Links
-
-**Lab 5: 05-inter-as-ipvpn**
-- Inter-AS Type B interconnect (EBGP VPN-IPv4 between ASBRs)
-- Next-Hop-Self on ASBRs
-- VPN label swapping at ASBRs
-- vpn-apply-import/export policies
-
 ### Chapter 4: Using BGP in VPLS
 **Lab: bgp-vpls**
 - BGP Auto-Discovery and Signalling (RFC 4761)
